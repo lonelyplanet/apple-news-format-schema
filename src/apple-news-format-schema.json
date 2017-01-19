@@ -1,0 +1,507 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "id": "https://schema.lonelyplanet.com/apple-news-format-scheama.json",
+  "title": "Apple News Format schema",
+  "description": "Describes article.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "columns": {
+          "$ref": "#/definitions/absIntMin1"
+        },
+        "width": {
+          "$ref": "#/definitions/absIntMin1"
+        },
+        "gutter": {
+          "type": "integer",
+          "multipleOf": 2.0,
+          "minimum": 0
+        },
+        "margin": {
+          "$ref": "#/definitions/absInt"
+        }
+      },
+      "required": [
+        "columns",
+        "width"
+      ]
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/component"
+      }
+    },
+    "advertisingSettings": {
+      "type": "object",
+      "properties": {
+        "bannerType": {
+          "type": "string",
+          "enum": [
+            "any",
+            "standard",
+            "double_height",
+            "large"
+          ]
+        },
+        "frequency": {
+          "type": "integer",
+          "multipleOf": 1.0,
+          "minimum": 0,
+          "maximum": 10
+        },
+        "layout": {
+          "type": "object",
+          "properties": {
+            "margin": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/absInt"
+                },
+                {
+                  "$ref": "#/definitions/margin"
+                }
+              ]
+            }
+          },
+          "required": [
+            "margin"
+          ]
+        }
+      }
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "authors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "campaignData": {
+          "type": "object"
+        },
+        "canonicalURL": {
+          "type": "string"
+        },
+        "coverArt": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coverArt"
+          }
+        },
+        "dateCreated": {
+          "$ref": "#/definitions/iso8601"
+        },
+        "dateModified": {
+          "$ref": "#/definitions/iso8601"
+        },
+        "datePublished": {
+          "$ref": "#/definitions/iso8601"
+        },
+        "excerpt": {
+          "type": "string"
+        },
+        "generatorIdentifier": {
+          "type": "string"
+        },
+        "generatorName": {
+          "type": "string"
+        },
+        "generatorVersion": {
+          "type": "string"
+        },
+        "keywords": {
+          "type": "array",
+          "maxItems": 50,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "thumbnailURL": {
+          "type": "string"
+        },
+        "transparentToolbar": {
+          "type": "boolean"
+        },
+        "videoURL": {
+          "type": "string",
+          "pattern": "^https?://"
+        }
+      }
+    },
+    "documentStyle": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": {
+          "$ref": "#/definitions/hexColor"
+        }
+      },
+      "required": [
+        "backgroundColor"
+      ]
+    },
+    "textStyles": {
+      "type": "object",
+      "patternProperties": {
+        ".+": {
+          "$ref": "#/definitions/textStyle"
+        }
+      }
+    },
+    "componentLayouts": {
+      "type": "object",
+      "patternProperties": {
+        ".+": {
+          "$ref": "#/definitions/componentLayout"
+        }
+      }
+    },
+    "componentStyles": {
+      "type": "object",
+      "patternProperties": {
+        ".+": {
+          "$ref": "#/definitions/componentStyle"
+        }
+      }
+    },
+    "componentTextStyles": {
+      "type": "object",
+      "patternProperties": {
+        ".+": {
+          "$ref": "#/definitions/componentTextStyle"
+        }
+      }
+    }
+  },
+  "required": [
+    "version",
+    "identifier",
+    "title",
+    "language",
+    "layout",
+    "components"
+  ],
+  "definitions": {
+    "componentTextStyle": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/textStyle"
+        },
+        {
+          "properties": {
+            "dropCapStyle": {
+              "type": "object",
+              "properties": {
+                "numberOfLines": {
+                  "type": "integer",
+                  "multipleOf": 1.0,
+                  "minimum": 2,
+                  "maximum": 10
+                },
+                "backgroundColor": {
+                  "$ref": "#/definitions/hexColor"
+                },
+                "fontName": {
+                  "type": "string"
+                },
+                "numberOfCharacters": {
+                  "type": "integer",
+                  "multipleOf": 1.0,
+                  "minimum": 1,
+                  "maximum": 4
+                },
+                "numberOfRaisedLines": {
+                  "$ref": "#/definitions/absInt"
+                },
+                "padding": {
+                  "$ref": "#/definitions/absInt"
+                },
+                "textColor": {
+                  "$ref": "#/definitions/hexColor"
+                }
+              },
+              "required": [
+                "numberOfLines"
+              ]
+            },
+            "firstLineIndent": {
+              "$ref": "#/definitions/absInt"
+            },
+            "hangingPunctuation": {
+              "type": "boolean"
+            },
+            "hyphenation": {
+              "type": "boolean"
+            },
+            "lineHeight": {
+              "$ref": "#/definitions/absInt"
+            },
+            "linkStyle": {
+              "$ref": "#/definitions/textStyle"
+            },
+            "paragraphSpacingBefore": {
+              "$ref": "#/definitions/absInt"
+            },
+            "paragraphSpacingAfter": {
+              "$ref": "#/definitions/absInt"
+            },
+            "textAlignment": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right",
+                "center",
+                "justified",
+                "none"
+              ]
+            },
+            "textShadow": {
+              "$ref": "#/definitions/textShadow"
+            }
+          }
+        }
+      ]
+    },
+    "componentStyle": {
+      "type": "object"
+    },
+    "componentLayout": {
+      "type": "object"
+    },
+    "textShadow": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/hexColor"
+        },
+        "radius": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "opacity": {
+          "$ref": "#/definitions/percentage"
+        },
+        "offset": {
+          "type": "object",
+          "properties": {
+            "x": {
+              "$ref": "#/definitions/shadowOffsetNumber"
+            },
+            "y": {
+              "$ref": "#/definitions/shadowOffsetNumber"
+            }
+          },
+          "required": [
+            "x",
+            "y"
+          ]
+        }
+      },
+      "required": [
+        "color",
+        "radius"
+      ]
+    },
+    "textStyle": {
+      "type": "object",
+      "properties": {
+        "backgroundColor": {
+          "$ref": "#/definitions/hexColor"
+        },
+        "fontName": {
+          "type": "string"
+        },
+        "fontSize": {
+          "$ref": "#/definitions/absIntMin1"
+        },
+        "orderedListItems": {
+          "$ref": "#/definitions/listItemStyle"
+        },
+        "unorderedListItems": {
+          "$ref": "#/definitions/listItemStyle"
+        },
+        "strikethrough": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/textDecoration"
+            }
+          ]
+        },
+        "stroke": {
+          "$ref": "#/definitions/textDecoration",
+          "required": [
+            "color"
+          ]
+        },
+        "textColor": {
+          "$ref": "#/definitions/hexColor"
+        },
+        "textShadow": {
+          "$ref": "#/definitions/textShadow"
+        },
+        "tracking": {
+          "$ref": "#/definitions/percentage"
+        },
+        "underline": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "$ref": "#/definitions/textDecoration"
+            }
+          ]
+        },
+        "verticalAlignment": {
+          "type": "string",
+          "enum": [
+            "superscript",
+            "subscript",
+            "baseline"
+          ]
+        }
+      }
+    },
+    "percentage": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "shadowOffsetNumber": {
+      "type": "number",
+      "minimum": -50,
+      "maximum": 50
+    },
+    "textDecoration": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/hexColor"
+        },
+        "width": {
+          "$ref": "#/definitions/absIntMin1"
+        }
+      }
+    },
+    "listItemStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "bullet",
+            "decimal",
+            "lower_alphabetical",
+            "upper_alphabetical",
+            "lower_roman",
+            "upper_roman",
+            "character",
+            "none"
+          ]
+        },
+        "character": {
+          "type": "string",
+          "maxLength": 1
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "hexColor": {
+      "type": "string",
+      "pattern": "^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6}|[a-fA-F0-9]{8})"
+    },
+    "iso8601": {
+      "type": "string",
+      "pattern": "^(19|[2-9][0-9])[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|([12][0-9]|3[01]))T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\+([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "absInt": {
+      "type": "integer",
+      "multipleOf": 1.0,
+      "minimum": 0
+    },
+    "absIntMin1": {
+      "type": "integer",
+      "multipleOf": 1.0,
+      "minimum": 1
+    },
+    "unitsOfMeasure": {
+      "type": "string",
+      "pattern": "^[0-9]+(vh|vw|vmin|vmax|gut|cw|pt)$"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "heading"
+      ]
+    },
+    "component": {
+      "type": "object",
+      "properties": {},
+      "required": [
+        "role"
+      ]
+    },
+    "margin": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/absInt"
+        },
+        {
+          "$ref": "#/definitions/unitsOfMeasure"
+        }
+      ]
+    },
+    "coverArt": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "image"
+          ]
+        },
+        "URL": {
+          "type": "string"
+        },
+        "accessibilityCaption": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "URL"
+      ]
+    }
+  }
+}

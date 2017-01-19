@@ -1,0 +1,28 @@
+{
+  "name": "apple-news-format-schema",
+  "version": "1.4.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Apple News Format schema",
+  "main": "src/apple-news-format-schema.json",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lonelyplanet/apple-news-format-schema.git"
+  },
+  "keywords": [
+    "Apple",
+    "News",
+    "Format",
+    "JSON",
+    "schema"
+  ],
+  "author": {
+    "email": "eric.king@lonelyplanet.com",
+    "name": "Eric King",
+    "url": "http://webdeveric.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/lonelyplanet/apple-news-format-schema/issues"
+  },
+  "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme"
+}
