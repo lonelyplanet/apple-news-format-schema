@@ -7,7 +7,8 @@
   "additionalProperties": false,
   "properties": {
     "version": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
     },
     "identifier": {
       "type": "string",
@@ -21,6 +22,7 @@
     },
     "layout": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "columns": {
           "$ref": "#/definitions/absIntMin1"
@@ -50,6 +52,7 @@
     },
     "advertisingSettings": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "bannerType": {
           "type": "string",
@@ -68,6 +71,7 @@
         },
         "layout": {
           "type": "object",
+          "additionalProperties": false,
           "properties": {
             "margin": {
               "oneOf": [
@@ -91,18 +95,16 @@
     },
     "metadata": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "authors": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "$ref": "#/definitions/uniqueStringsArray"
         },
         "campaignData": {
           "type": "object"
         },
         "canonicalURL": {
-          "type": "string"
+          "$ref": "#/definitions/httpURL"
         },
         "coverArt": {
           "type": "array",
@@ -110,49 +112,41 @@
             "$ref": "#/definitions/coverArt"
           }
         },
-        "dateCreated": {
-          "$ref": "#/definitions/iso8601"
-        },
-        "dateModified": {
-          "$ref": "#/definitions/iso8601"
-        },
-        "datePublished": {
-          "$ref": "#/definitions/iso8601"
-        },
         "excerpt": {
           "type": "string"
         },
-        "generatorIdentifier": {
-          "type": "string"
-        },
-        "generatorName": {
-          "type": "string"
-        },
-        "generatorVersion": {
-          "type": "string"
-        },
         "keywords": {
-          "type": "array",
-          "maxItems": 50,
-          "uniqueItems": true,
-          "items": {
-            "type": "string"
-          }
+          "allOf": [
+            {
+              "$ref": "#/definitions/uniqueStringsArray"
+            },
+            {
+              "maxItems": 50
+            }
+          ]
         },
         "thumbnailURL": {
-          "type": "string"
+          "$ref": "#/definitions/URL"
         },
         "transparentToolbar": {
           "type": "boolean"
         },
         "videoURL": {
-          "type": "string",
-          "pattern": "^https?://"
+          "$ref": "#/definitions/httpURL"
+        }
+      },
+      "patternProperties": {
+        "^date(Created|Modified|Published)$": {
+          "$ref": "#/definitions/iso8601"
+        },
+        "^generator(Identifier|Name|Version)$": {
+          "type": "string"
         }
       }
     },
     "documentStyle": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "backgroundColor": {
           "$ref": "#/definitions/hexColor"
@@ -204,6 +198,159 @@
     "components"
   ],
   "definitions": {
+    "fillMode": {
+      "type": "string",
+      "enum": [
+        "fit",
+        "cover"
+      ]
+    },
+    "horizontalAlignment": {
+      "type": "string",
+      "enum": [
+        "left",
+        "center",
+        "right"
+      ]
+    },
+    "verticalAlignment": {
+      "type": "string",
+      "enum": [
+        "top",
+        "center",
+        "bottom"
+      ]
+    },
+    "httpURL": {
+      "type": "string",
+      "pattern": "^https?://.+"
+    },
+    "bundleURL": {
+      "type": "string",
+      "pattern": "^bundle://.+"
+    },
+    "URL": {
+      "type": "string",
+      "pattern": "^(bundle|https?)://.+"
+    },
+    "colorStop": {
+      "typpe": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/hexColor"
+        },
+        "location": {
+          "$ref": "#/definitions/percentage"
+        }
+      },
+      "required": [
+        "color"
+      ]
+    },
+    "linearGradient": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "linear_gradient"
+          ]
+        },
+        "colorStops": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/colorStop"
+          }
+        },
+        "angle": {
+          "$ref": "#/definitions/degree"
+        }
+      },
+      "required": [
+        "type",
+        "colorStops"
+      ]
+    },
+    "videoFill": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "video"
+          ]
+        },
+        "URL": {
+          "$ref": "#/definitions/httpURL"
+        },
+        "stillURL": {
+          "$ref": "#/definitions/URL"
+        },
+        "fillMode": {
+          "$ref": "#/definitions/fillMode"
+        },
+        "horizontalAlignment": {
+          "$ref": "#/definitions/horizontalAlignment"
+        },
+        "verticalAlignment": {
+          "$ref": "#/definitions/verticalAlignment"
+        },
+        "loop": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type",
+        "URL",
+        "stillURL"
+      ]
+    },
+    "imageFill": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "image"
+          ]
+        },
+        "URL": {
+          "$ref": "#/definitions/URL"
+        },
+        "attachment": {
+          "type": "string",
+          "enum": [
+            "scroll",
+            "fixed"
+          ]
+        },
+        "fillMode": {
+          "$ref": "#/definitions/fillMode"
+        },
+        "horizontalAlignment": {
+          "$ref": "#/definitions/horizontalAlignment"
+        },
+        "verticalAlignment": {
+          "$ref": "#/definitions/verticalAlignment"
+        }
+      },
+      "required": [
+        "type",
+        "URL"
+      ]
+    },
+    "uniqueStringsArray": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
     "componentTextStyle": {
       "allOf": [
         {
@@ -213,6 +360,7 @@
           "properties": {
             "dropCapStyle": {
               "type": "object",
+              "additionalProperties": false,
               "properties": {
                 "numberOfLines": {
                   "type": "integer",
@@ -284,14 +432,88 @@
         }
       ]
     },
+    "strokeStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "color": {
+          "$ref": "#/definitions/hexColor"
+        },
+        "width": {
+          "oneOf": [
+            {
+              "$ref": "#/definitions/absInt"
+            },
+            {
+              "$ref": "#/definitions/unitsOfMeasure"
+            }
+          ]
+        },
+        "style": {
+          "type": "string",
+          "enum": [
+            "solid",
+            "dashed",
+            "dotted"
+          ]
+        }
+      }
+    },
+    "border": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "all": {
+          "$ref": "#/definitions/strokeStyle"
+        },
+        "top": {
+          "type": "boolean"
+        },
+        "right": {
+          "type": "boolean"
+        },
+        "bottom": {
+          "type": "boolean"
+        },
+        "left": {
+          "type": "boolean"
+        }
+      }
+    },
     "componentStyle": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "backgroundColor": {
+          "$ref": "#/definitions/hexColor"
+        },
+        "fill": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/imageFill"
+            },
+            {
+              "$ref": "#/definitions/videoFill"
+            },
+            {
+              "$ref": "#/definitions/linearGradient"
+            }
+          ]
+        },
+        "opacity": {
+          "$ref": "#/definitions/percentage"
+        },
+        "border": {
+          "$ref": "#/definitions/border"
+        }
+      }
     },
     "componentLayout": {
       "type": "object"
     },
     "textShadow": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "color": {
           "$ref": "#/definitions/hexColor"
@@ -306,11 +528,9 @@
         },
         "offset": {
           "type": "object",
-          "properties": {
-            "x": {
-              "$ref": "#/definitions/shadowOffsetNumber"
-            },
-            "y": {
+          "additionalProperties": false,
+          "patternProperties": {
+            "^[xy]$": {
               "$ref": "#/definitions/shadowOffsetNumber"
             }
           },
@@ -327,6 +547,7 @@
     },
     "textStyle": {
       "type": "object",
+      "additionalProperties": false,
       "properties": {
         "backgroundColor": {
           "$ref": "#/definitions/hexColor"
@@ -387,6 +608,11 @@
           ]
         }
       }
+    },
+    "degree": {
+      "type": "number",
+      "minimum": -360,
+      "maximum": 360
     },
     "percentage": {
       "type": "number",
@@ -492,7 +718,7 @@
           ]
         },
         "URL": {
-          "type": "string"
+          "$ref": "#/definitions/URL"
         },
         "accessibilityCaption": {
           "type": "string"
