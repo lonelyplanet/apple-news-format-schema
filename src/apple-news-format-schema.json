@@ -684,15 +684,194 @@
       "type": "string",
       "pattern": "^[0-9]+(vh|vw|vmin|vmax|gut|cw|pt)$"
     },
-    "role": {
-      "type": "string",
-      "enum": [
-        "heading"
+    "anchor": {
+      "type": "object",
+      "properties": {
+        "targetAnchorPosition": {
+          "$ref": "#/definitions/verticalAlignment"
+        },
+        "originAnchorPosition": {
+          "$ref": "#/definitions/verticalAlignment"
+        },
+        "rangeLength": {
+          "type": "integer"
+        },
+        "rangeStart": {
+          "type": "integer"
+        },
+        "targetComponentIdentifier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetAnchorPosition"
+      ]
+    },
+    "animation": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "appear",
+            "fade_in",
+            "move_in",
+            "scale_fade"
+          ]
+        },
+        "userControllable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "appearAnimation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animation"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "appear"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "fadeInAnimation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animation"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "fade_in"
+              ]
+            },
+            "initialAlpha": {
+              "$ref": "#/definitions/percentage"
+            }
+          }
+        }
+      ]
+    },
+    "moveInAnimation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animation"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "move_in"
+              ]
+            },
+            "preferredStartingPosition": {
+              "type": "string",
+              "enum": [
+                "left",
+                "right"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "scaleFadeAnimation": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animation"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "scale_fade"
+              ]
+            },
+            "initialAlpha": {
+              "$ref": "#/definitions/percentage"
+            },
+            "initialScale": {
+              "$ref": "#/definitions/percentage"
+            }
+          }
+        }
+      ]
+    },
+    "anyAnimation": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/appearAnimation"
+        },
+        {
+          "$ref": "#/definitions/fadeInAnimation"
+        },
+        {
+          "$ref": "#/definitions/moveInAnimation"
+        },
+        {
+          "$ref": "#/definitions/scaleFadeAnimation"
+        }
       ]
     },
     "component": {
       "type": "object",
-      "properties": {},
+      "properties": {
+        "role": {
+          "type": "string",
+          "enum": [
+            "body",
+            "title",
+            "heading",
+            "intro",
+            "pullquote",
+            "quote",
+            "caption",
+            "byline",
+            "author",
+            "photographer",
+            "illustrator",
+            "photo",
+            "figure",
+            "logo",
+            "portrait",
+            "gallery",
+            "mosaic",
+            "map",
+            "place",
+            "video",
+            "embedvideo",
+            "audio",
+            "music",
+            "facebook_post",
+            "instagram",
+            "tweet",
+            "vine_post",
+            "banner_advertisement",
+            "medium_rectangle_advertisement",
+            "header",
+            "container",
+            "divider",
+            "section",
+            "chapter"
+          ]
+        },
+        "anchor": {
+          "$ref": "#/definitions/anchor"
+        },
+        "animation": {
+          "$ref": "#/definitions/anyAnimation"
+        }
+      },
       "required": [
         "role"
       ]
