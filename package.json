@@ -4,7 +4,7 @@
   "private": true,
   "license": "MIT",
   "description": "Apple News Format schema",
-  "main": "src/apple-news-format-schema.json",
+  "main": "docs/schema.json",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lonelyplanet/apple-news-format-schema.git"

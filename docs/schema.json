@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/schema#",
-  "id": "https://schema.lonelyplanet.com/apple-news-format-scheama.json",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://lonelyplanet.github.io/apple-news-format-schema/schema.json",
   "title": "Apple News Format schema",
   "description": "Describes article.json",
   "type": "object",
@@ -55,13 +55,7 @@
       "additionalProperties": false,
       "properties": {
         "bannerType": {
-          "type": "string",
-          "enum": [
-            "any",
-            "standard",
-            "double_height",
-            "large"
-          ]
+          "$ref": "#/definitions/bannerType"
         },
         "frequency": {
           "type": "integer",
@@ -74,14 +68,7 @@
           "additionalProperties": false,
           "properties": {
             "margin": {
-              "oneOf": [
-                {
-                  "$ref": "#/definitions/absInt"
-                },
-                {
-                  "$ref": "#/definitions/margin"
-                }
-              ]
+              "$ref": "#/definitions/margin"
             }
           },
           "required": [
@@ -198,6 +185,31 @@
     "components"
   ],
   "definitions": {
+    "bannerType": {
+      "type": "string",
+      "enum": [
+        "any",
+        "standard",
+        "double_height",
+        "large"
+      ],
+      "default": "any"
+    },
+    "margin": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/absInt"
+        },
+        {
+          "type": "object",
+          "patternProperties": {
+            "^(top|bottom)$": {
+              "$ref": "#/definitions/unitsOfMeasure"
+            }
+          }
+        }
+      ]
+    },
     "fillMode": {
       "type": "string",
       "enum": [
@@ -223,15 +235,18 @@
     },
     "httpURL": {
       "type": "string",
-      "pattern": "^https?://.+"
+      "pattern": "^https?://.+",
+      "format": "uri"
     },
     "bundleURL": {
       "type": "string",
-      "pattern": "^bundle://.+"
+      "pattern": "^bundle://.+",
+      "format": "uri"
     },
     "URL": {
       "type": "string",
-      "pattern": "^(bundle|https?)://.+"
+      "pattern": "^(bundle|https?)://.+",
+      "format": "uri"
     },
     "colorStop": {
       "typpe": "object",
@@ -509,7 +524,62 @@
       }
     },
     "componentLayout": {
-      "type": "object"
+      "type": "object",
+      "properties": {
+        "columnSpan": {
+          "$ref": "#/definitions/absIntMin1"
+        },
+        "columnStart": {
+          "$ref": "#/definitions/absInt"
+        },
+        "contentInset": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "object",
+              "patternProperties": {
+                "^(top|right|bottom|left)$": {
+                  "type": "boolean",
+                  "default": false
+                }
+              }
+            }
+          ]
+        },
+        "horizontalContentAlignment": {
+          "$ref": "#/definitions/horizontalAlignment"
+        },
+        "margin": {
+          "$ref": "#/definitions/margin"
+        },
+        "maximumContentWidth": {
+          "$ref": "#/definitions/unitsOfMeasure"
+        },
+        "minimumHeight": {
+          "$ref": "#/definitions/unitsOfMeasure"
+        }
+      },
+      "patternProperties": {
+        "^ignoreDocument(Gutter|Margin)$": {
+          "oneOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "string",
+              "enum": [
+                "none",
+                "left",
+                "right",
+                "both"
+              ]
+            }
+          ],
+          "default": "none"
+        }
+      }
     },
     "textShadow": {
       "type": "object",
@@ -668,7 +738,8 @@
     },
     "iso8601": {
       "type": "string",
-      "pattern": "^(19|[2-9][0-9])[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|([12][0-9]|3[01]))T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\+([01][0-9]|2[0-3]):[0-5][0-9]$"
+      "pattern": "^(19|[2-9][0-9])[0-9]{2}-(0[1-9]|1[0-2])-(0[1-9]|([12][0-9]|3[01]))T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]\\+([01][0-9]|2[0-3]):[0-5][0-9]$",
+      "format": "date-time"
     },
     "absInt": {
       "type": "integer",
@@ -681,8 +752,15 @@
       "minimum": 1
     },
     "unitsOfMeasure": {
-      "type": "string",
-      "pattern": "^[0-9]+(vh|vw|vmin|vmax|gut|cw|pt)$"
+      "oneOf": [
+        {
+          "$ref": "#/definitions/absInt"
+        },
+        {
+          "type": "string",
+          "pattern": "^[0-9]+(v(h|w|min|max)|gut|cw|pt)$"
+        }
+      ]
     },
     "anchor": {
       "type": "object",
@@ -707,17 +785,11 @@
         "targetAnchorPosition"
       ]
     },
-    "animation": {
+    "abstractAnimation": {
       "type": "object",
       "properties": {
         "type": {
-          "type": "string",
-          "enum": [
-            "appear",
-            "fade_in",
-            "move_in",
-            "scale_fade"
-          ]
+          "type": "string"
         },
         "userControllable": {
           "type": "boolean"
@@ -730,7 +802,7 @@
     "appearAnimation": {
       "allOf": [
         {
-          "$ref": "#/definitions/animation"
+          "$ref": "#/definitions/abstractAnimation"
         },
         {
           "properties": {
@@ -746,7 +818,7 @@
     "fadeInAnimation": {
       "allOf": [
         {
-          "$ref": "#/definitions/animation"
+          "$ref": "#/definitions/abstractAnimation"
         },
         {
           "properties": {
@@ -765,7 +837,7 @@
     "moveInAnimation": {
       "allOf": [
         {
-          "$ref": "#/definitions/animation"
+          "$ref": "#/definitions/abstractAnimation"
         },
         {
           "properties": {
@@ -788,7 +860,7 @@
     "scaleFadeAnimation": {
       "allOf": [
         {
-          "$ref": "#/definitions/animation"
+          "$ref": "#/definitions/abstractAnimation"
         },
         {
           "properties": {
@@ -823,7 +895,122 @@
         }
       ]
     },
-    "component": {
+    "abstractBehavior": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "backgroundMotionBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "background_motion"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "backgroundParallaxBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "background_parallax"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "motionBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "motion"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "parallaxBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "parallax"
+              ]
+            },
+            "factor": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 2.0
+            }
+          }
+        }
+      ]
+    },
+    "springyBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "springy"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "anyBehavior": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/backgroundMotionBehavior"
+        },
+        {
+          "$ref": "#/definitions/backgroundParallaxBehavior"
+        },
+        {
+          "$ref": "#/definitions/motionBehavior"
+        },
+        {
+          "$ref": "#/definitions/parallaxBehavior"
+        },
+        {
+          "$ref": "#/definitions/springyBehavior"
+        }
+      ]
+    },
+    "abstractComponent": {
       "type": "object",
       "properties": {
         "role": {
@@ -870,19 +1057,113 @@
         },
         "animation": {
           "$ref": "#/definitions/anyAnimation"
+        },
+        "behavior": {
+          "$ref": "#/definitions/anyBehavior"
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/componentLayout"
+            }
+          ]
+        },
+        "style": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/componentStyle"
+            }
+          ]
         }
       },
       "required": [
         "role"
       ]
     },
-    "margin": {
-      "oneOf": [
+    "audioComponent": {
+      "allOf": [
         {
-          "$ref": "#/definitions/absInt"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
-          "$ref": "#/definitions/unitsOfMeasure"
+          "properties": {
+            "URL": {
+              "$ref": "#/definitions/httpURL"
+            },
+            "accessibilityCaption": {
+              "type": "string"
+            },
+            "anchor": {
+              "$ref": "#/definitions/anchor"
+            },
+            "animation": {
+              "$ref": "#/definitions/anyAnimation"
+            },
+            "behavior": {
+              "$ref": "#/definitions/anyBehavior"
+            },
+            "caption": {
+              "type": "string"
+            },
+            "explicitContent": {
+              "type": "boolean",
+              "default": false
+            },
+            "identifier": {
+              "type": "string"
+            },
+            "imageURL": {
+              "$ref": "#/definitions/URL"
+            },
+            "layout": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/definitions/componentLayout"
+                }
+              ]
+            },
+            "style": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "$ref": "#/definitions/componentStyle"
+                }
+              ]
+            }
+          },
+          "required": [
+            "URL"
+          ]
+        }
+      ]
+    },
+    "musicComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/audioComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "music"
+              ]
+            }
+          }
         }
       ]
     },
