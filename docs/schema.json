@@ -1167,6 +1167,28 @@
         }
       ]
     },
+    "authorComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "author"
+              ]
+            },
+            "text": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "text"
+          ]
+        }
+      ]
+    },
     "coverArt": {
       "type": "object",
       "additionalProperties": false,
