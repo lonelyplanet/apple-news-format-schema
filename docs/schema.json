@@ -31,9 +31,7 @@
           "$ref": "#/definitions/absIntMin1"
         },
         "gutter": {
-          "type": "integer",
-          "multipleOf": 2.0,
-          "minimum": 0
+          "$ref": "#/definitions/absInt"
         },
         "margin": {
           "$ref": "#/definitions/absInt"
@@ -45,10 +43,7 @@
       ]
     },
     "components": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/component"
-      }
+      "$ref": "#/definitions/componentsArray"
     },
     "advertisingSettings": {
       "type": "object",
@@ -185,6 +180,68 @@
     "components"
   ],
   "definitions": {
+    "abstractScene": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "fadingStickyHeaderScene": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractScene"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "fading_sticky_header"
+              ]
+            },
+            "fadeColor": {
+              "$ref": "#/definitions/hexColor"
+            }
+          }
+        }
+      ]
+    },
+    "parallaxScaleHeaderScene": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractScene"
+        },
+        {
+          "properties": {
+            "type": {
+              "enum": [
+                "parallax_scale"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "anyScene": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/fadingStickyHeaderScene"
+        },
+        {
+          "$ref": "#/definitions/parallaxScaleHeaderScene"
+        }
+      ]
+    },
+    "componentsArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/anyComponent"
+      }
+    },
     "bannerType": {
       "type": "string",
       "enum": [
@@ -455,14 +512,7 @@
           "$ref": "#/definitions/hexColor"
         },
         "width": {
-          "oneOf": [
-            {
-              "$ref": "#/definitions/absInt"
-            },
-            {
-              "$ref": "#/definitions/unitsOfMeasure"
-            }
-          ]
+          "$ref": "#/definitions/unitsOfMeasure"
         },
         "style": {
           "type": "string",
@@ -617,7 +667,6 @@
     },
     "textStyle": {
       "type": "object",
-      "additionalProperties": false,
       "properties": {
         "backgroundColor": {
           "$ref": "#/definitions/hexColor"
@@ -679,6 +728,32 @@
         }
       }
     },
+    "inlineTextStyle": {
+      "type": "object",
+      "properties": {
+        "rangeLength": {
+          "$ref": "#/definitions/absInt"
+        },
+        "rangeStart": {
+          "$ref": "#/definitions/absInt"
+        },
+        "textStyle": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/textStyle"
+            }
+          ]
+        }
+      },
+      "required": [
+        "rangeLength",
+        "rangeStart",
+        "textStyle"
+      ]
+    },
     "degree": {
       "type": "number",
       "minimum": -360,
@@ -734,7 +809,7 @@
     },
     "hexColor": {
       "type": "string",
-      "pattern": "^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6}|[a-fA-F0-9]{8})"
+      "pattern": "^#([a-fA-F0-9]{3}|[a-fA-F0-9]{6}|[a-fA-F0-9]{8})$"
     },
     "iso8601": {
       "type": "string",
@@ -772,10 +847,10 @@
           "$ref": "#/definitions/verticalAlignment"
         },
         "rangeLength": {
-          "type": "integer"
+          "$ref": "#/definitions/absInt"
         },
         "rangeStart": {
-          "type": "integer"
+          "$ref": "#/definitions/absInt"
         },
         "targetComponentIdentifier": {
           "type": "string"
@@ -1010,56 +1085,69 @@
         }
       ]
     },
+    "anyComponent": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/textualComponent"
+        },
+        {
+          "$ref": "#/definitions/audioComponent"
+        },
+        {
+          "$ref": "#/definitions/bannerAdvertisementComponent"
+        },
+        {
+          "$ref": "#/definitions/containerComponent"
+        },
+        {
+          "$ref": "#/definitions/chapterComponent"
+        },
+        {
+          "$ref": "#/definitions/headerComponent"
+        },
+        {
+          "$ref": "#/definitions/sectionComponent"
+        },
+        {
+          "$ref": "#/definitions/dividerComponent"
+        },
+        {
+          "$ref": "#/definitions/embedWebVideoComponent"
+        },
+        {
+          "$ref": "#/definitions/facebookPostComponent"
+        },
+        {
+          "$ref": "#/definitions/instagramComponent"
+        },
+        {
+          "$ref": "#/definitions/tweetComponent"
+        },
+        {
+          "$ref": "#/definitions/imageComponent"
+        },
+        {
+          "$ref": "#/definitions/photoComponent"
+        },
+        {
+          "$ref": "#/definitions/galleryComponent"
+        },
+        {
+          "$ref": "#/definitions/mediumRectangleAdvertisementComponent"
+        },
+        {
+          "$ref": "#/definitions/mapComponent"
+        }
+      ]
+    },
     "abstractComponent": {
       "type": "object",
       "properties": {
         "role": {
-          "type": "string",
-          "enum": [
-            "body",
-            "title",
-            "heading",
-            "intro",
-            "pullquote",
-            "quote",
-            "caption",
-            "byline",
-            "author",
-            "photographer",
-            "illustrator",
-            "photo",
-            "figure",
-            "logo",
-            "portrait",
-            "gallery",
-            "mosaic",
-            "map",
-            "place",
-            "video",
-            "embedvideo",
-            "audio",
-            "music",
-            "facebook_post",
-            "instagram",
-            "tweet",
-            "vine_post",
-            "banner_advertisement",
-            "medium_rectangle_advertisement",
-            "header",
-            "container",
-            "divider",
-            "section",
-            "chapter"
-          ]
+          "type": "string"
         },
         "anchor": {
           "$ref": "#/definitions/anchor"
-        },
-        "animation": {
-          "$ref": "#/definitions/anyAnimation"
-        },
-        "behavior": {
-          "$ref": "#/definitions/anyBehavior"
         },
         "identifier": {
           "type": "string"
@@ -1089,27 +1177,180 @@
         "role"
       ]
     },
-    "audioComponent": {
+    "animatableComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "$ref": "#/definitions/hasAnimations"
+        }
+      ]
+    },
+    "abstractTextComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "$ref": "#/definitions/captionDescriptor"
+        }
+      ]
+    },
+    "textualComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractTextComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "author",
+                "body",
+                "byline",
+                "caption",
+                "heading",
+                "heading1",
+                "heading2",
+                "heading3",
+                "heading4",
+                "heading5",
+                "heading6",
+                "illustrator",
+                "intro",
+                "photographer",
+                "pullquote",
+                "title"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "containerComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
+            "role": {
+              "enum": [
+                "container"
+              ]
+            },
+            "components": {
+              "$ref": "#/definitions/componentsArray"
+            }
+          }
+        }
+      ]
+    },
+    "chapterComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "chapter"
+              ]
+            },
+            "components": {
+              "$ref": "#/definitions/componentsArray"
+            },
+            "scene": {
+              "$ref": "#/definitions/anyScene"
+            }
+          }
+        }
+      ]
+    },
+    "headerComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "header"
+              ]
+            },
+            "components": {
+              "$ref": "#/definitions/componentsArray"
+            }
+          }
+        }
+      ]
+    },
+    "sectionComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "section"
+              ]
+            },
+            "components": {
+              "$ref": "#/definitions/componentsArray"
+            },
+            "scene": {
+              "$ref": "#/definitions/anyScene"
+            }
+          }
+        }
+      ]
+    },
+    "dividerComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "divider"
+              ]
+            },
+            "stroke": {
+              "$ref": "#/definitions/strokeStyle"
+            }
+          }
+        }
+      ]
+    },
+    "embedWebVideoComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "embedwebvideo",
+                "embedvideo"
+              ]
+            },
             "URL": {
               "$ref": "#/definitions/httpURL"
             },
             "accessibilityCaption": {
               "type": "string"
             },
-            "anchor": {
-              "$ref": "#/definitions/anchor"
-            },
-            "animation": {
-              "$ref": "#/definitions/anyAnimation"
-            },
-            "behavior": {
-              "$ref": "#/definitions/anyBehavior"
+            "aspectRatio": {
+              "type": "number",
+              "default": 1.777
             },
             "caption": {
               "type": "string"
@@ -1117,30 +1358,33 @@
             "explicitContent": {
               "type": "boolean",
               "default": false
-            },
-            "identifier": {
-              "type": "string"
-            },
-            "imageURL": {
-              "$ref": "#/definitions/URL"
-            },
-            "layout": {
-              "oneOf": [
-                {
-                  "type": "string"
-                },
-                {
-                  "$ref": "#/definitions/componentLayout"
-                }
+            }
+          },
+          "required": [
+            "URL"
+          ]
+        }
+      ]
+    },
+    "facebookPostComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "facebook_post"
               ]
             },
-            "style": {
-              "oneOf": [
+            "URL": {
+              "allOf": [
                 {
-                  "type": "string"
+                  "$ref": "#/definitions/httpURL"
                 },
                 {
-                  "$ref": "#/definitions/componentStyle"
+                  "pattern": "^https://www.facebook.com/.+"
                 }
               ]
             }
@@ -1151,23 +1395,7 @@
         }
       ]
     },
-    "musicComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/audioComponent"
-        },
-        {
-          "properties": {
-            "role": {
-              "enum": [
-                "music"
-              ]
-            }
-          }
-        }
-      ]
-    },
-    "authorComponent": {
+    "instagramComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/abstractComponent"
@@ -1176,17 +1404,428 @@
           "properties": {
             "role": {
               "enum": [
-                "author"
+                "instagram"
               ]
             },
-            "text": {
-              "type": "string"
+            "URL": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/httpURL"
+                },
+                {
+                  "pattern": "instagram\\.com"
+                }
+              ]
             }
           },
           "required": [
-            "text"
+            "URL"
           ]
         }
+      ]
+    },
+    "tweetComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "tweet"
+              ]
+            },
+            "URL": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/httpURL"
+                },
+                {
+                  "pattern": "twitter\\.com"
+                }
+              ]
+            }
+          },
+          "required": [
+            "URL"
+          ]
+        }
+      ]
+    },
+    "mapComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "$ref": "#/definitions/hasCaptions"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "map"
+              ]
+            },
+            "latitude": {
+              "$ref": "#/definitions/latitude"
+            },
+            "longitude": {
+              "$ref": "#/definitions/longitude"
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/mapItem"
+              }
+            },
+            "mapType": {
+              "type": "string",
+              "enum": [
+                "standard",
+                "hybrid",
+                "satellite"
+              ],
+              "default": "standard"
+            },
+            "span": {
+              "type": "object",
+              "properties": {
+                "latitudeDelta": {
+                  "type": "number",
+                  "minimum": 0.0,
+                  "maximum": 90.0
+                },
+                "longitudeDelta": {
+                  "type": "number",
+                  "minimum": 0.0,
+                  "maximum": 180.0
+                }
+              },
+              "required": [
+                "latitudeDelta",
+                "longitudeDelta"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90.0,
+      "maximum": 90.0
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180.0,
+      "maximum": 180.0
+    },
+    "mapItem": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "$ref": "#/definitions/latitude"
+        },
+        "longitude": {
+          "$ref": "#/definitions/longitude"
+        },
+        "caption": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ]
+    },
+    "mediumRectangleAdvertisementComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "medium_rectangle_advertisement"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "abstractImageComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "$ref": "#/definitions/hasCaptions"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "figure",
+                "image",
+                "logo",
+                "photo",
+                "portrait"
+              ]
+            },
+            "URL": {
+              "$ref": "#/definitions/URL"
+            }
+          },
+          "required": [
+            "URL"
+          ]
+        }
+      ]
+    },
+    "imageComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractImageComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "figure",
+                "image",
+                "logo"
+              ]
+            },
+            "caption": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "photoComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractImageComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "photo",
+                "portrait"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "galleryComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "gallery",
+                "mosaic"
+              ]
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/galleryItem"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "galleryItem": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/hasCaptions"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "URL": {
+              "$ref": "#/definitions/URL"
+            },
+            "explicitContent": {
+              "$ref": "#/definitions/explicitContent"
+            }
+          },
+          "required": [
+            "URL"
+          ]
+        }
+      ]
+    },
+    "captionDescriptor": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "additions": {
+          "$ref": "#/definitions/additions"
+        },
+        "format": {
+          "$ref": "#/definitions/format"
+        },
+        "inlineTextStyles": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/inlineTextStyle"
+          }
+        },
+        "textStyle": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "$ref": "#/definitions/componentTextStyle"
+            }
+          ]
+        }
+      },
+      "required": [
+        "text"
+      ]
+    },
+    "audioComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "$ref": "#/definitions/hasCaptions"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "audio",
+                "music"
+              ]
+            },
+            "URL": {
+              "$ref": "#/definitions/httpURL"
+            },
+            "explicitContent": {
+              "$ref": "#/definitions/explicitContent"
+            },
+            "imageURL": {
+              "$ref": "#/definitions/URL"
+            }
+          },
+          "required": [
+            "URL"
+          ]
+        }
+      ]
+    },
+    "bannerAdvertisementComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "banner_advertisement"
+              ]
+            },
+            "bannerType": {
+              "$ref": "#/definitions/bannerType"
+            }
+          }
+        }
+      ]
+    },
+    "hasAnimations": {
+      "type": "object",
+      "properties": {
+        "animation": {
+          "$ref": "#/definitions/anyAnimation"
+        },
+        "behavior": {
+          "$ref": "#/definitions/anyBehavior"
+        }
+      }
+    },
+    "hasCaptions": {
+      "type": "object",
+      "properties": {
+        "accessibilityCaption": {
+          "type": "string"
+        },
+        "caption": {
+          "$ref": "#/definitions/caption"
+        }
+      }
+    },
+    "caption": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "$ref": "#/definitions/captionDescriptor"
+        }
+      ]
+    },
+    "explicitContent": {
+      "type": "boolean",
+      "default": false
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "html",
+        "markdown",
+        "none"
+      ],
+      "default": "none"
+    },
+    "additions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/linkAddition"
+      }
+    },
+    "linkAddition": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "link"
+          ]
+        },
+        "rangeLength": {
+          "$ref": "#/definitions/absInt"
+        },
+        "rangeStart": {
+          "$ref": "#/definitions/absInt"
+        },
+        "URL": {
+          "$ref": "#/definitions/URL"
+        }
+      },
+      "required": [
+        "type",
+        "rangeLength",
+        "rangeStart",
+        "URL"
       ]
     },
     "coverArt": {
