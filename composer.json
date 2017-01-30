@@ -1,0 +1,22 @@
+{
+  "name": "lonelyplanet/apple-news-format-schema",
+  "description": "Apple News Format schema",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "Apple",
+    "News",
+    "Format",
+    "JSON",
+    "schema"
+  ],
+  "authors": [
+    {
+      "name": "Eric King",
+      "email": "eric.king@lonelyplanet.com",
+      "homepage": "http://webdeveric.com",
+      "role": "Developer"
+    }
+  ],
+  "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme"
+}
