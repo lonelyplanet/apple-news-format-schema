@@ -43,7 +43,20 @@
       ]
     },
     "components": {
-      "$ref": "#/definitions/componentsArray"
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/anyComponent"
+          },
+          {
+            "$ref": "#/definitions/bannerAdvertisementComponent"
+          },
+          {
+            "$ref": "#/definitions/mediumRectangleAdvertisementComponent"
+          }
+        ]
+      }
     },
     "advertisingSettings": {
       "type": "object",
@@ -1094,10 +1107,10 @@
           "$ref": "#/definitions/audioComponent"
         },
         {
-          "$ref": "#/definitions/bannerAdvertisementComponent"
+          "$ref": "#/definitions/containerComponent"
         },
         {
-          "$ref": "#/definitions/containerComponent"
+          "$ref": "#/definitions/sectionComponent"
         },
         {
           "$ref": "#/definitions/chapterComponent"
@@ -1106,13 +1119,13 @@
           "$ref": "#/definitions/headerComponent"
         },
         {
-          "$ref": "#/definitions/sectionComponent"
-        },
-        {
           "$ref": "#/definitions/dividerComponent"
         },
         {
           "$ref": "#/definitions/embedWebVideoComponent"
+        },
+        {
+          "$ref": "#/definitions/videoComponent"
         },
         {
           "$ref": "#/definitions/facebookPostComponent"
@@ -1124,6 +1137,9 @@
           "$ref": "#/definitions/tweetComponent"
         },
         {
+          "$ref": "#/definitions/vinePostComponent"
+        },
+        {
           "$ref": "#/definitions/imageComponent"
         },
         {
@@ -1131,9 +1147,6 @@
         },
         {
           "$ref": "#/definitions/galleryComponent"
-        },
-        {
-          "$ref": "#/definitions/mediumRectangleAdvertisementComponent"
         },
         {
           "$ref": "#/definitions/mapComponent"
@@ -1221,7 +1234,43 @@
                 "intro",
                 "photographer",
                 "pullquote",
+                "quote",
                 "title"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "bannerAdvertisementComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "banner_advertisement"
+              ]
+            },
+            "bannerType": {
+              "$ref": "#/definitions/bannerType"
+            }
+          }
+        }
+      ]
+    },
+    "mediumRectangleAdvertisementComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "medium_rectangle_advertisement"
               ]
             }
           }
@@ -1329,19 +1378,13 @@
         }
       ]
     },
-    "embedWebVideoComponent": {
+    "abstractVideoComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/animatableComponent"
         },
         {
           "properties": {
-            "role": {
-              "enum": [
-                "embedwebvideo",
-                "embedvideo"
-              ]
-            },
             "URL": {
               "$ref": "#/definitions/httpURL"
             },
@@ -1363,6 +1406,45 @@
           "required": [
             "URL"
           ]
+        }
+      ]
+    },
+    "videoComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractVideoComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "video"
+              ]
+            },
+            "stillURL": {
+              "$ref": "#/definitions/URL"
+            }
+          }
+        }
+      ]
+    },
+    "embedWebVideoComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractVideoComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "embedwebvideo",
+                "embedvideo"
+              ]
+            },
+            "URL": {
+              "pattern": "^https://(player\\.vimeo\\.com|www\\.youtube\\.com)/.+"
+            }
+          }
         }
       ]
     },
@@ -1453,7 +1535,36 @@
         }
       ]
     },
-    "mapComponent": {
+    "vinePostComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/animatableComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "vine_post"
+              ]
+            },
+            "URL": {
+              "allOf": [
+                {
+                  "$ref": "#/definitions/httpURL"
+                },
+                {
+                  "pattern": "^https://vine\\.co/.+"
+                }
+              ]
+            }
+          },
+          "required": [
+            "URL"
+          ]
+        }
+      ]
+    },
+    "abstractMapComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/animatableComponent"
@@ -1463,22 +1574,11 @@
         },
         {
           "properties": {
-            "role": {
-              "enum": [
-                "map"
-              ]
-            },
             "latitude": {
               "$ref": "#/definitions/latitude"
             },
             "longitude": {
               "$ref": "#/definitions/longitude"
-            },
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/mapItem"
-              }
             },
             "mapType": {
               "type": "string",
@@ -1512,6 +1612,48 @@
         }
       ]
     },
+    "mapComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractMapComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "map"
+              ]
+            },
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/mapItem"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "placeComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractMapComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "enum": [
+                "place"
+              ]
+            }
+          },
+          "required": [
+            "latitude",
+            "longitude"
+          ]
+        }
+      ]
+    },
     "latitude": {
       "type": "number",
       "minimum": -90.0,
@@ -1538,22 +1680,6 @@
       "required": [
         "latitude",
         "longitude"
-      ]
-    },
-    "mediumRectangleAdvertisementComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractComponent"
-        },
-        {
-          "properties": {
-            "role": {
-              "enum": [
-                "medium_rectangle_advertisement"
-              ]
-            }
-          }
-        }
       ]
     },
     "abstractImageComponent": {
@@ -1729,25 +1855,6 @@
           "required": [
             "URL"
           ]
-        }
-      ]
-    },
-    "bannerAdvertisementComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractComponent"
-        },
-        {
-          "properties": {
-            "role": {
-              "enum": [
-                "banner_advertisement"
-              ]
-            },
-            "bannerType": {
-              "$ref": "#/definitions/bannerType"
-            }
-          }
         }
       ]
     },
