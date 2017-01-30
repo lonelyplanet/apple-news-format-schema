@@ -24,5 +24,14 @@
   "bugs": {
     "url": "https://github.com/lonelyplanet/apple-news-format-schema/issues"
   },
-  "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme"
+  "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme",
+  "scripts": {
+    "test": "mocha --colors"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "glob": "^7.1.1",
+    "jsonschema": "^1.1.1",
+    "mocha": "^3.2.0"
+  }
 }

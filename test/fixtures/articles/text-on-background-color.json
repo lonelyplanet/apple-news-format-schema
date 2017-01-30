@@ -1,0 +1,158 @@
+{
+  "version": "1.0",
+  "identifier": "Apple_Demo",
+  "title": "Text on Background Color",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 60,
+    "gutter": 40
+  },
+  "subtitle": "Non occidere quae cumque vi ventia",
+  "metadata": {
+    "excerpt": "Text on Background Color",
+    "thumbnailURL": "bundle://header.jpg"
+  },
+  "documentStyle": {
+    "backgroundColor": "#f6f6f6"
+  },
+  "components": [
+    {
+      "role": "section",
+      "layout": "headerImageLayout",
+      "style": {
+        "fill": {
+          "type": "image",
+          "URL": "bundle://header.jpg",
+          "fillMode": "cover",
+          "attachment": "fixed",
+          "verticalAlignment": "center"
+        }
+      },
+      "components": [
+        {
+          "role": "title",
+          "layout": "titleLayout",
+          "text": " Text \n on \n Background \n Color ",
+          "textStyle": "titleStyle"
+        },
+        {
+          "role": "container",
+          "layout": "titleContainerLayout",
+          "components": [
+            {
+              "role": "title",
+              "layout": "titleLayout2",
+              "text": " Text ",
+              "textStyle": "titleStyle2"
+            },
+            {
+              "role": "title",
+              "layout": "titleLayout2",
+              "text": " on ",
+              "textStyle": "titleStyle2"
+            },
+            {
+              "role": "title",
+              "layout": "titleLayout2",
+              "text": " Background ",
+              "textStyle": "titleStyle2"
+            },
+            {
+              "role": "title",
+              "layout": "titleLayout2",
+              "text": " Color ",
+              "textStyle": "titleStyle2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "componentTextStyles": {
+    "default-title": {
+      "fontName": "HelveticaNeue-Thin",
+      "fontSize": 36,
+      "textColor": "#2F2F2F",
+      "textAlignment": "center",
+      "lineHeight": 44
+    },
+    "default-subtitle": {
+      "fontName": "HelveticaNeue-Thin",
+      "fontSize": 20,
+      "textColor": "#2F2F2F",
+      "textAlignment": "center",
+      "lineHeight": 24
+    },
+    "titleStyle": {
+      "textAlignment": "left",
+      "fontName": "HelveticaNeue-Bold",
+      "fontSize": 64,
+      "lineHeight": 74,
+      "backgroundColor": "#000",
+      "textColor": "#FFF"
+    },
+    "titleStyle2": {
+      "textAlignment": "left",
+      "fontName": "HelveticaNeue-Bold",
+      "fontSize": 64,
+      "backgroundColor": "#000",
+      "lineHeight": 74,
+      "textColor": "#FFF"
+    },
+    "titleStyle3": {
+      "textAlignment": "left",
+      "fontName": "HelveticaNeue-Bold",
+      "fontSize": 64,
+      "lineHeight": 74,
+      "textColor": "#FFF"
+    }
+  },
+  "componentLayouts": {
+    "headerImageLayout": {
+      "columnStart": 0,
+      "columnSpan": 7,
+      "ignoreDocumentMargin": true,
+      "minimumHeight": "100vh"
+    },
+    "titleContainerLayout": {
+      "columnStart": 0,
+      "columnSpan": 7,
+      "margin": {
+        "top": 50,
+        "bottom": 50
+      }
+    },
+    "titleLayout": {
+      "columnStart": 0,
+      "columnSpan": 7,
+      "margin": {
+        "top": 150,
+        "bottom": 15
+      }
+    },
+    "titleLayout2": {
+      "columnStart": 0,
+      "columnSpan": 7,
+      "margin": {
+        "top": 5,
+        "bottom": 5
+      }
+    },
+    "titleLayout3": {
+      "columnStart": 0,
+      "columnSpan": 7,
+      "contentInset": {
+        "top": false,
+        "bottom": false,
+        "left": true,
+        "right": true
+      },
+      "margin": {
+        "top": 5,
+        "bottom": 5
+      }
+    }
+  }
+}
