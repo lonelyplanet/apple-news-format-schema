@@ -2,6 +2,15 @@
 
 This is a work in progress.
 
+## Tests
+
+I've included the [example articles from Apple](https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles.zip) and I use this [schema](docs/schema.json) to validate them when running tests.
+
+```shell
+npm install
+npm test
+```
+
 ## Links
 
 - [Apple News](http://www.apple.com/news/)
