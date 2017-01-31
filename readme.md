@@ -1,6 +1,6 @@
 # Apple News Format schema
 
-This is a work in progress.
+This schema covers version `1.4` of the Apple News Format.
 
 ## Tests
 
