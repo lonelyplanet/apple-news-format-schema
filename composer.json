@@ -18,5 +18,10 @@
       "role": "Developer"
     }
   ],
-  "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme"
+  "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme",
+  "autoload": {
+    "psr-4": {
+      "LonelyPlanet\\AppleNewsFormat\\": "src/"
+    }
+  }
 }
