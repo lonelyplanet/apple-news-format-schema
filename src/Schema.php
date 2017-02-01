@@ -13,7 +13,7 @@ class Schema
 {
     public static function getPath()
     {
-        return realpath( '../docs/schema.json' );
+        return realpath( __DIR__ . '/../docs/schema.json' );
     }
 
     public static function getContents()
