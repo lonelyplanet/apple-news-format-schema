@@ -1538,7 +1538,7 @@
     "vinePostComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
