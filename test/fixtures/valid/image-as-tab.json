@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "identifier": "Apple_Demo",
-  "title": "Title in Box",
+  "title": "Image as Tab",
   "language": "en",
   "layout": {
     "columns": 7,
@@ -11,7 +11,7 @@
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
-    "excerpt": "Title in Box",
+    "excerpt": "Image as Tab",
     "thumbnailURL": "bundle://header.jpg"
   },
   "documentStyle": {
@@ -26,42 +26,28 @@
           "type": "image",
           "URL": "bundle://header.jpg",
           "fillMode": "cover",
-          "verticalAlignment": "bottom"
+          "verticalAlignment": "center"
         }
       },
       "behavior": {
         "type": "parallax",
-        "factor": 0.5
+        "factor": 0.6
       },
       "components": [
         {
           "role": "container",
-          "anchor": {
-            "targetAnchorPosition": "top"
-          },
-          "components": [
-            {
-              "role": "container",
-              "layout": "tabLayout",
-              "style": {
-                "backgroundColor": "#FFFFFF80"
-              },
-              "components": [
-                {
-                  "role": "title",
-                  "layout": "titleLayout",
-                  "text": "Title in Box",
-                  "textStyle": "titleStyle"
-                },
-                {
-                  "role": "intro",
-                  "layout": "introLayout",
-                  "text": "Sed ut perspiciatis omnis.",
-                  "textStyle": "introStyle"
-                }
-              ]
+          "layout": "tabLayout",
+          "style": {
+            "fill": {
+              "type": "image",
+              "URL": "bundle://tab.png",
+              "fillMode": "fit",
+              "verticalAlignment": "bottom"
             }
-          ]
+          },
+          "anchor": {
+            "targetAnchorPosition": "bottom"
+          }
         }
       ]
     },
@@ -73,6 +59,18 @@
         "targetAnchorPosition": "bottom"
       },
       "components": [
+        {
+          "role": "title",
+          "layout": "titleLayout",
+          "text": "Image as Tab",
+          "textStyle": "titleStyle"
+        },
+        {
+          "role": "intro",
+          "layout": "introLayout",
+          "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
+          "textStyle": "introStyle"
+        },
         {
           "role": "author",
           "layout": "authorLayout",
@@ -114,7 +112,7 @@
   ],
   "componentStyles": {
     "bodyContainerStyle": {
-      "backgroundColor": "#FFF"
+      "backgroundColor": "#FFFFFF"
     }
   },
   "componentTextStyles": {
@@ -135,8 +133,8 @@
     "titleStyle": {
       "textAlignment": "center",
       "fontName": "HelveticaNeue-Bold",
-      "fontSize": 48,
-      "lineHeight": 50,
+      "fontSize": 64,
+      "lineHeight": 74,
       "textColor": "#000"
     },
     "introStyle": {
@@ -156,13 +154,6 @@
       "fontName": "Georgia",
       "fontSize": 18,
       "lineHeight": 26,
-      "textColor": "#000"
-    },
-    "captionStyle": {
-      "textAlignment": "left",
-      "fontName": "HelveticaNeue-Medium",
-      "fontSize": 12,
-      "lineHeight": 17,
       "textColor": "#000"
     },
     "heading1Style": {
@@ -185,34 +176,29 @@
       "columnStart": 0,
       "columnSpan": 7,
       "ignoreDocumentMargin": true,
-      "minimumHeight": "100vh"
+      "minimumHeight": "42vh"
     },
     "bodyContainerLayout": {
       "columnStart": 0,
       "columnSpan": 7,
-      "ignoreDocumentMargin": true
+      "ignoreDocumentMargin": true,
+      "contentInset": {
+        "left": true,
+        "right": true
+      }
     },
     "tabLayout": {
       "columnStart": 0,
       "columnSpan": 7,
-      "minimumHeight": "2vh",
-      "ignoreDocumentMargin": false,
-
-      "contentInset": {
-        "right": true,
-        "left": true
-      },
-      "margin": {
-        "top": 30,
-        "bottom": 120
-      }
+      "ignoreDocumentMargin": true,
+      "minimumHeight": "13vw"
     },
     "titleLayout": {
       "columnStart": 0,
       "columnSpan": 7,
       "margin": {
-        "top": 30,
-        "bottom": 5
+        "top": 15,
+        "bottom": 10
       }
     },
     "introLayout": {
@@ -220,7 +206,7 @@
       "columnSpan": 7,
       "margin": {
         "top": 15,
-        "bottom": 30
+        "bottom": 15
       }
     },
     "authorLayout": {
@@ -237,14 +223,6 @@
       "margin": {
         "top": 15,
         "bottom": 15
-      }
-    },
-    "captionLayout": {
-      "columnStart": 5,
-      "columnSpan": 2,
-      "margin": {
-        "top": 15,
-        "bottom": 30
       }
     },
     "heading1Layout": {

@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "identifier": "wrong-url",
+  "language": "en",
+  "title": "Wrong URL",
+  "layout": {
+    "columns": 1,
+    "width": 1,
+    "margin": 1,
+    "gutter": 1
+  },
+  "components": [
+    {
+      "role": "embedwebvideo",
+      "URL": "http://example.com/"
+    },
+    {
+      "role": "facebook_post",
+      "URL": "http://www.facebook.com/"
+    },
+    {
+      "role": "instagram",
+      "URL": "http://instagram.com/"
+    },
+    {
+      "role": "tweet",
+      "URL": "http://twitter.com/"
+    }
+  ]
+}

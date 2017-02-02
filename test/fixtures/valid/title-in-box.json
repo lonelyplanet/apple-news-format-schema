@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "identifier": "Apple_Demo",
-  "title": "Title on Scrim",
+  "title": "Title in Box",
   "language": "en",
   "layout": {
     "columns": 7,
@@ -11,7 +11,7 @@
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
-    "excerpt": "Title on Scrim",
+    "excerpt": "Title in Box",
     "thumbnailURL": "bundle://header.jpg"
   },
   "documentStyle": {
@@ -19,60 +19,44 @@
   },
   "components": [
     {
-      "role": "section",
-      "layout": {
-        "columnStart": 0,
-        "columnSpan": 7,
-        "ignoreDocumentMargin": true
+      "role": "header",
+      "layout": "headerImageLayout",
+      "style": {
+        "fill": {
+          "type": "image",
+          "URL": "bundle://header.jpg",
+          "fillMode": "cover",
+          "verticalAlignment": "bottom"
+        }
       },
-      "scene": {
-        "type": "parallax_scale"
+      "behavior": {
+        "type": "parallax",
+        "factor": 0.5
       },
       "components": [
         {
-          "role": "header",
-          "layout": "headerImageLayout",
-          "style": {
-            "fill": {
-              "type": "image",
-              "URL": "bundle://header.jpg",
-              "fillMode": "cover",
-              "verticalAlignment": "center",
-              "horizontalAlignment": "right"
-            }
+          "role": "container",
+          "anchor": {
+            "targetAnchorPosition": "top"
           },
           "components": [
             {
               "role": "container",
               "layout": "tabLayout",
               "style": {
-                "fill": {
-                  "type": "linear_gradient",
-                  "angle": 180,
-                  "colorStops": [
-                    {
-                      "color": "#00000000"
-                    },
-                    {
-                      "color": "#000"
-                    }
-                  ]
-                }
-              },
-              "anchor": {
-                "targetAnchorPosition": "bottom"
+                "backgroundColor": "#FFFFFF80"
               },
               "components": [
                 {
                   "role": "title",
                   "layout": "titleLayout",
-                  "text": "Title on Scrim",
+                  "text": "Title in Box",
                   "textStyle": "titleStyle"
                 },
                 {
                   "role": "intro",
                   "layout": "introLayout",
-                  "text": "Sed ut perspiciatis unde omnis iste.",
+                  "text": "Sed ut perspiciatis omnis.",
                   "textStyle": "introStyle"
                 }
               ]
@@ -130,7 +114,7 @@
   ],
   "componentStyles": {
     "bodyContainerStyle": {
-      "backgroundColor": "#000"
+      "backgroundColor": "#FFF"
     }
   },
   "componentTextStyles": {
@@ -147,53 +131,53 @@
       "textColor": "#2F2F2F",
       "textAlignment": "center",
       "lineHeight": 24
-    },    
+    },
     "titleStyle": {
       "textAlignment": "center",
       "fontName": "HelveticaNeue-Bold",
-      "fontSize": 42,
+      "fontSize": 48,
       "lineHeight": 50,
-      "textColor": "#EFEFEF"
+      "textColor": "#000"
     },
     "introStyle": {
       "textAlignment": "center",
       "fontName": "HelveticaNeue-Medium",
       "fontSize": 24,
-      "textColor": "#EFEFEF"
+      "textColor": "#000"
     },
     "authorStyle": {
       "textAlignment": "center",
       "fontName": "HelveticaNeue-Bold",
       "fontSize": 16,
-      "textColor": "#fff"
+      "textColor": "#000"
     },
     "bodyStyle": {
       "textAlignment": "left",
       "fontName": "Georgia",
       "fontSize": 18,
       "lineHeight": 26,
-      "textColor": "#fff"
+      "textColor": "#000"
     },
     "captionStyle": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Medium",
       "fontSize": 12,
       "lineHeight": 17,
-      "textColor": "#fff"
+      "textColor": "#000"
     },
     "heading1Style": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Medium",
       "fontSize": 28,
       "lineHeight": 41,
-      "textColor": "#fff"
+      "textColor": "#000"
     },
     "pullquoteStyle": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Bold",
       "fontSize": 28,
       "lineHeight": 41,
-      "textColor": "#fff"
+      "textColor": "#000"
     }
   },
   "componentLayouts": {
@@ -201,7 +185,7 @@
       "columnStart": 0,
       "columnSpan": 7,
       "ignoreDocumentMargin": true,
-      "minimumHeight": "42vh"
+      "minimumHeight": "100vh"
     },
     "bodyContainerLayout": {
       "columnStart": 0,
@@ -211,14 +195,22 @@
     "tabLayout": {
       "columnStart": 0,
       "columnSpan": 7,
-      "minimumHeight": "10vh",
-      "ignoreDocumentMargin": true
+      "minimumHeight": "2vh",
+      "ignoreDocumentMargin": false,
+      "contentInset": {
+        "right": true,
+        "left": true
+      },
+      "margin": {
+        "top": 30,
+        "bottom": 120
+      }
     },
     "titleLayout": {
       "columnStart": 0,
       "columnSpan": 7,
       "margin": {
-        "top": 50,
+        "top": 30,
         "bottom": 5
       }
     },
@@ -226,8 +218,8 @@
       "columnStart": 0,
       "columnSpan": 7,
       "margin": {
-        "top": 5,
-        "bottom": 20
+        "top": 15,
+        "bottom": 30
       }
     },
     "authorLayout": {

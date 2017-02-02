@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "identifier": "Apple_Demo",
-  "title": "Simple Right Margin 5 Column",
+  "title": "Simple with Headline above Header Image",
   "language": "en",
   "layout": {
     "columns": 7,
@@ -11,7 +11,7 @@
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
-    "excerpt": "Simple Right Margin 5 Column",
+    "excerpt": "Simple with Headline above Header Image",
     "thumbnailURL": "bundle://header.jpg"
   },
   "documentStyle": {
@@ -21,8 +21,26 @@
     {
       "role": "title",
       "layout": "titleLayout",
-      "text": "Right Margin / 5 col",
+      "text": "Headline Above Image",
       "textStyle": "titleStyle"
+    },
+    {
+      "role": "intro",
+      "layout": "introLayout",
+      "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
+      "textStyle": "introStyle"
+    },
+    {
+      "role": "header",
+      "layout": "headerImageLayout",
+      "style": {
+        "fill": {
+          "type": "image",
+          "URL": "bundle://header.jpg",
+          "fillMode": "cover",
+          "verticalAlignment": "center"
+        }
+      }
     },
     {
       "role": "author",
@@ -59,6 +77,12 @@
       "lineHeight": 74,
       "textColor": "#000"
     },
+    "introStyle": {
+      "textAlignment": "left",
+      "fontName": "HelveticaNeue-Medium",
+      "fontSize": 24,
+      "textColor": "#000"
+    },
     "authorStyle": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Bold",
@@ -74,12 +98,30 @@
     }
   },
   "componentLayouts": {
+    "headerImageLayout": {
+      "columnStart": 0,
+      "columnSpan": 7,
+      "ignoreDocumentMargin": true,
+      "minimumHeight": "40vh",
+      "margin": {
+        "top": 15,
+        "bottom": 15
+      }
+    },
     "titleLayout": {
       "columnStart": 0,
       "columnSpan": 7,
       "margin": {
         "top": 50,
         "bottom": 10
+      }
+    },
+    "introLayout": {
+      "columnStart": 0,
+      "columnSpan": 7,
+      "margin": {
+        "top": 15,
+        "bottom": 15
       }
     },
     "authorLayout": {

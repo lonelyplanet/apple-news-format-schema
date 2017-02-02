@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "identifier": "Apple_Demo",
-  "title": "Anchored Titles on Header",
+  "title": "Title on Scrim",
   "language": "en",
   "layout": {
     "columns": 7,
@@ -11,7 +11,7 @@
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
-    "excerpt": "Anchored Titles on Header",
+    "excerpt": "Title on Scrim",
     "thumbnailURL": "bundle://header.jpg"
   },
   "documentStyle": {
@@ -19,74 +19,60 @@
   },
   "components": [
     {
-      "role": "header",
-      "layout": "headerImageLayout",
-      "style": {
-        "fill": {
-          "type": "image",
-          "URL": "bundle://header.jpg",
-          "fillMode": "cover",
-          "verticalAlignment": "bottom"
-        }
+      "role": "section",
+      "layout": {
+        "columnStart": 0,
+        "columnSpan": 7,
+        "ignoreDocumentMargin": true
       },
-      
-      "behavior": {
-        "type": "parallax",
-        "factor": 0.5
+      "scene": {
+        "type": "parallax_scale"
       },
       "components": [
         {
-          "role": "container",
-          "anchor": {
-            "targetAnchorPosition": "top"
-          },
-          "components": [
-            {
-              "role": "container",
-              "layout": "tabTopLayout",
-              "style": {
-                "backgroundColor": "#FFFFFF80"
-              },
-              "components": [
-                {
-                  "role": "title",
-                  "layout": "titleLayout",
-                  "text": "Title on Header",
-                  "textStyle": "titleStyle"
-                },
-                {
-                  "role": "intro",
-                  "layout": "introLayout",
-                  "text": "Anchored to Top with Top Margin",
-                  "textStyle": "introStyle"
-                }
-              ]
+          "role": "header",
+          "layout": "headerImageLayout",
+          "style": {
+            "fill": {
+              "type": "image",
+              "URL": "bundle://header.jpg",
+              "fillMode": "cover",
+              "verticalAlignment": "center",
+              "horizontalAlignment": "right"
             }
-          ]
-        },
-        {
-          "role": "container",
-          "anchor": {
-            "targetAnchorPosition": "bottom"
           },
           "components": [
             {
               "role": "container",
-              "layout": "tabBottomLayout",
+              "layout": "tabLayout",
               "style": {
-                "backgroundColor": "#FFFFFF80"
+                "fill": {
+                  "type": "linear_gradient",
+                  "angle": 180,
+                  "colorStops": [
+                    {
+                      "color": "#00000000"
+                    },
+                    {
+                      "color": "#000"
+                    }
+                  ]
+                }
+              },
+              "anchor": {
+                "targetAnchorPosition": "bottom"
               },
               "components": [
                 {
                   "role": "title",
                   "layout": "titleLayout",
-                  "text": "Title on Header",
+                  "text": "Title on Scrim",
                   "textStyle": "titleStyle"
                 },
                 {
                   "role": "intro",
                   "layout": "introLayout",
-                  "text": "Anchored to Bottom with Bottom Margin",
+                  "text": "Sed ut perspiciatis unde omnis iste.",
                   "textStyle": "introStyle"
                 }
               ]
@@ -144,7 +130,7 @@
   ],
   "componentStyles": {
     "bodyContainerStyle": {
-      "backgroundColor": "#FFF"
+      "backgroundColor": "#000"
     }
   },
   "componentTextStyles": {
@@ -165,49 +151,49 @@
     "titleStyle": {
       "textAlignment": "center",
       "fontName": "HelveticaNeue-Bold",
-      "fontSize": 48,
+      "fontSize": 42,
       "lineHeight": 50,
-      "textColor": "#000"
+      "textColor": "#EFEFEF"
     },
     "introStyle": {
       "textAlignment": "center",
       "fontName": "HelveticaNeue-Medium",
       "fontSize": 24,
-      "textColor": "#000"
+      "textColor": "#EFEFEF"
     },
     "authorStyle": {
       "textAlignment": "center",
       "fontName": "HelveticaNeue-Bold",
       "fontSize": 16,
-      "textColor": "#000"
+      "textColor": "#fff"
     },
     "bodyStyle": {
       "textAlignment": "left",
       "fontName": "Georgia",
       "fontSize": 18,
       "lineHeight": 26,
-      "textColor": "#000"
+      "textColor": "#fff"
     },
     "captionStyle": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Medium",
       "fontSize": 12,
       "lineHeight": 17,
-      "textColor": "#000"
+      "textColor": "#fff"
     },
     "heading1Style": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Medium",
       "fontSize": 28,
       "lineHeight": 41,
-      "textColor": "#000"
+      "textColor": "#fff"
     },
     "pullquoteStyle": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Bold",
       "fontSize": 28,
       "lineHeight": 41,
-      "textColor": "#000"
+      "textColor": "#fff"
     }
   },
   "componentLayouts": {
@@ -215,44 +201,24 @@
       "columnStart": 0,
       "columnSpan": 7,
       "ignoreDocumentMargin": true,
-      "minimumHeight": "94vh"
+      "minimumHeight": "42vh"
     },
     "bodyContainerLayout": {
       "columnStart": 0,
       "columnSpan": 7,
       "ignoreDocumentMargin": true
     },
-    "tabTopLayout": {
+    "tabLayout": {
       "columnStart": 0,
       "columnSpan": 7,
-      "minimumHeight": "2vh",
-      "ignoreDocumentMargin": false,
-      "contentInset": {
-        "right": true,
-        "left": true
-      },
-      "margin": {
-        "top": 80
-      }
-    },
-    "tabBottomLayout": {
-      "columnStart": 0,
-      "columnSpan": 7,
-      "minimumHeight": "2vh",
-      "ignoreDocumentMargin": false,
-      "contentInset": {
-        "right": true,
-        "left": true
-      },
-      "margin": {
-        "bottom": 100
-      }
+      "minimumHeight": "10vh",
+      "ignoreDocumentMargin": true
     },
     "titleLayout": {
       "columnStart": 0,
       "columnSpan": 7,
       "margin": {
-        "top": 30,
+        "top": 50,
         "bottom": 5
       }
     },
@@ -260,8 +226,8 @@
       "columnStart": 0,
       "columnSpan": 7,
       "margin": {
-        "top": 15,
-        "bottom": 30
+        "top": 5,
+        "bottom": 20
       }
     },
     "authorLayout": {

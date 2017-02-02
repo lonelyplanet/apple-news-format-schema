@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "identifier": "invalid identifier!",
+  "language": "en",
+  "title": "Invalid Identifier!",
+  "layout": {
+    "columns": 1,
+    "width": 1,
+    "margin": 1,
+    "gutter": 1
+  },
+  "components": []
+}
