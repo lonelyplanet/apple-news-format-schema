@@ -1495,7 +1495,7 @@
                   "$ref": "#/definitions/httpURL"
                 },
                 {
-                  "pattern": "instagram\\.com"
+                  "pattern": "instagram\\.com/.+"
                 }
               ]
             }
@@ -1524,7 +1524,7 @@
                   "$ref": "#/definitions/httpURL"
                 },
                 {
-                  "pattern": "twitter\\.com"
+                  "pattern": "twitter\\.com/.+"
                 }
               ]
             }
