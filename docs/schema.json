@@ -489,7 +489,7 @@
               "type": "boolean"
             },
             "lineHeight": {
-              "$ref": "#/definitions/absInt"
+              "$ref": "#/definitions/absIntMin1"
             },
             "linkStyle": {
               "$ref": "#/definitions/textStyle"
