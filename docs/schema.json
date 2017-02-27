@@ -533,7 +533,8 @@
             "solid",
             "dashed",
             "dotted"
-          ]
+          ],
+          "default": "solid"
         }
       }
     },
@@ -543,18 +544,12 @@
       "properties": {
         "all": {
           "$ref": "#/definitions/strokeStyle"
-        },
-        "top": {
-          "type": "boolean"
-        },
-        "right": {
-          "type": "boolean"
-        },
-        "bottom": {
-          "type": "boolean"
-        },
-        "left": {
-          "type": "boolean"
+        }
+      },
+      "patternProperties": {
+        "^(top|right|bottom|left)$": {
+          "type": "boolean",
+          "default": true
         }
       }
     },
@@ -846,7 +841,7 @@
         },
         {
           "type": "string",
-          "pattern": "^[0-9]+(v(h|w|min|max)|gut|cw|pt)$"
+          "pattern": "^[0-9]+(v(h|w|min|max)|gut|cw|pt)?$"
         }
       ]
     },

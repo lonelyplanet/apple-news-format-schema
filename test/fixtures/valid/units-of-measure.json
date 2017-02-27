@@ -1,0 +1,91 @@
+{
+  "version": "1.1",
+  "identifier": "units-of-measure",
+  "language": "en",
+  "title": "Units of measure",
+  "layout": {
+    "columns": 24,
+    "width": 1536,
+    "margin": 64,
+    "gutter": 64
+  },
+  "components": [
+    {
+      "role": "container",
+      "style": {
+        "border": {
+          "all": {
+            "width": "1",
+            "style": "solid",
+            "color": "#F00"
+          }
+        }
+      },
+      "components": [
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10vw"
+          },
+          "text": "Heading - 10vw"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10vh"
+          },
+          "text": "Heading - 10vh"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10vmin"
+          },
+          "text": "Heading - 10vmin"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10vmax"
+          },
+          "text": "Heading - 10vmax"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10pt"
+          },
+          "text": "Heading - 10pt"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10"
+          },
+          "text": "Heading - 10pt (without units)"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": 10
+          },
+          "text": "Heading - 10pt (int)"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10cw"
+          },
+          "text": "Heading - 10cw"
+        },
+        {
+          "role": "heading",
+          "layout": {
+            "minimumHeight": "10gut"
+          },
+          "text": "Heading - 10gut"
+        }
+      ]
+    }
+  ]
+}
