@@ -15,10 +15,12 @@
       "pattern": "^[a-zA-Z0-9_-]{1,64}$"
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "pattern": ".+"
     },
     "language": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[a-zA-Z-]+(_[a-zA-Z-]+)?$"
     },
     "layout": {
       "type": "object",
@@ -285,7 +287,8 @@
       "enum": [
         "fit",
         "cover"
-      ]
+      ],
+      "default": "cover"
     },
     "horizontalAlignment": {
       "type": "string",
@@ -293,7 +296,8 @@
         "left",
         "center",
         "right"
-      ]
+      ],
+      "default": "center"
     },
     "verticalAlignment": {
       "type": "string",
@@ -301,7 +305,8 @@
         "top",
         "center",
         "bottom"
-      ]
+      ],
+      "default": "center"
     },
     "httpURL": {
       "type": "string",
@@ -385,7 +390,8 @@
           "$ref": "#/definitions/verticalAlignment"
         },
         "loop": {
-          "type": "boolean"
+          "type": "boolean",
+          "default": true
         }
       },
       "required": [
@@ -748,7 +754,8 @@
         "textStyle": {
           "oneOf": [
             {
-              "type": "string"
+              "type": "string",
+              "pattern": ".+"
             },
             {
               "$ref": "#/definitions/textStyle"
@@ -1163,7 +1170,8 @@
         "layout": {
           "oneOf": [
             {
-              "type": "string"
+              "type": "string",
+              "pattern": ".+"
             },
             {
               "$ref": "#/definitions/componentLayout"
@@ -1173,7 +1181,8 @@
         "style": {
           "oneOf": [
             {
-              "type": "string"
+              "type": "string",
+              "pattern": ".+"
             },
             {
               "$ref": "#/definitions/componentStyle"
@@ -1792,7 +1801,8 @@
       "type": "object",
       "properties": {
         "text": {
-          "type": "string"
+          "type": "string",
+          "pattern": ".+"
         },
         "additions": {
           "$ref": "#/definitions/additions"
@@ -1809,7 +1819,8 @@
         "textStyle": {
           "oneOf": [
             {
-              "type": "string"
+              "type": "string",
+              "pattern": ".+"
             },
             {
               "$ref": "#/definitions/componentTextStyle"
