@@ -708,9 +708,15 @@
           ]
         },
         "stroke": {
-          "$ref": "#/definitions/textDecoration",
-          "required": [
-            "color"
+          "allOf": [
+            {
+              "$ref": "#/definitions/textDecoration"
+            },
+            {
+              "required": [
+                "color"
+              ]
+            }
           ]
         },
         "textColor": {
