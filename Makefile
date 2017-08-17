@@ -1,4 +1,4 @@
-.PHONY: install test
+.PHONY: install test lint
 
 install:
 	docker-compose run --rm node npm install
