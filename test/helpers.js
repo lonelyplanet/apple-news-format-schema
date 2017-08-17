@@ -1,63 +1,39 @@
 const os = require('os');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const crypto = require('crypto');
 const request = require('request');
-const tmpDir = path.join( os.tmpdir(), require('../package.json').name );
+const packageName = require('../package.json').name;
 
 function md5( data )
 {
-  return crypto.createHash('md5').update(data).digest("hex");
+  return crypto.createHash('md5').update(data).digest('hex');
 }
 
 function ensureTmpDirExists()
 {
-  return new Promise( (resolve, reject) => {
-    try {
+  const tmpDir = path.join( os.tmpdir(), packageName );
 
-      if ( ! fs.existsSync( tmpDir ) ) {
-        fs.mkdirSync( tmpDir );
-      }
-
-      resolve( tmpDir );
-
-    } catch ( error ) {
-
-      reject( error );
-
-    }
-  });
+  return fs.ensureDir( tmpDir ).then( () => tmpDir );
 }
 
-function loadSchema( schema )
+function loadSchema( uri )
 {
-  return new Promise( (resolve, reject) => {
+  return new Promise( async (resolve, reject) => {
     try {
-      ensureTmpDirExists().then( dir => {
-        const hashedPath = path.join( dir, md5( schema ) );
+      const dir = await ensureTmpDirExists();
+      const hashedPath = path.join( dir, md5( uri ) );
+      const localSchemaExists = await fs.pathExists( hashedPath );
 
-        if ( fs.existsSync( hashedPath ) ) {
-
-          resolve( JSON.parse( fs.readFileSync( hashedPath, 'utf8' ) ) );
-
-        } else {
-
-          request( schema, (error, response, body) => {
-            if ( ! error && response.statusCode == 200 ) {
-              fs.writeFileSync( hashedPath, body );
-              resolve( JSON.parse( fs.readFileSync( hashedPath, 'utf8' ) ) );
-            } else {
-              reject( error );
-            }
-          });
-
-        }
-      });
-
+      if ( localSchemaExists ) {
+        fs.readJson( hashedPath ).then( resolve, reject );
+      } else {
+        request( uri ).pipe( fs.createWriteStream( hashedPath ) ).on('finish', () => {
+          fs.readJson( hashedPath ).then( resolve, reject );
+        });
+      }
     } catch ( error ) {
-
       reject( error );
-
     }
   });
 }
@@ -65,5 +41,5 @@ function loadSchema( schema )
 module.exports = {
   md5,
   ensureTmpDirExists,
-  loadSchema
+  loadSchema,
 };

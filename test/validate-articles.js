@@ -1,21 +1,38 @@
-const process = require('process');
 const path = require('path');
 const util = require('util');
 const assert = require('chai').assert;
 const glob = require('glob');
-const validate = require('jsonschema').validate;
+const Ajv = require('ajv');
 const schema = require('../docs/schema.json');
-const validArticles = path.join( process.cwd(), 'test', 'fixtures', 'valid', '*.json' );
-const invalidArticles = path.join( process.cwd(), 'test', 'fixtures', 'invalid', '*.json' );
-const validateOptions = { nestedErrors: true };
+const loadSchema = require('./helpers').loadSchema;
+const validArticles = path.join( __dirname, 'fixtures', 'valid', '*.json' );
+const invalidArticles = path.join( __dirname, 'fixtures', 'invalid', '*.json' );
 const inspectOptions = { showHidden: true, depth: null };
 
 describe('Apple News Format schema', () => {
+  let validate = null;
+
+  before( done => {
+    const ajv = new Ajv({
+      loadSchema,
+      extendRefs: 'fail',
+    });
+
+    ajv.addMetaSchema( require('ajv/lib/refs/json-schema-draft-04.json') );
+
+    ajv.compileAsync(schema).then( func => {
+      validate = func;
+      done();
+    }).catch(
+      console.error.bind(console)
+    );
+  });
+
   describe('Valid articles', () => {
     glob.sync(validArticles).forEach( article => {
       it( path.basename(article), () => {
-        const results = validate( require(article), schema, validateOptions );
-        assert.isTrue( results.valid, util.inspect( results.errors, inspectOptions ) );
+        const valid = validate( require(article) );
+        assert.isTrue( valid, util.inspect( validate.errors, inspectOptions ) );
       });
     });
   });
@@ -23,9 +40,9 @@ describe('Apple News Format schema', () => {
   describe('Invalid articles', () => {
     glob.sync(invalidArticles).forEach( article => {
       it( path.basename(article), () => {
-        const results = validate( require(article), schema, validateOptions );
-        assert.isFalse( results.valid, `${path.basename(article)} is valid, but shouldn't be` );
-        assert.isAtLeast( results.errors.length, 1 );
+        const valid = validate( require(article) );
+        assert.isFalse( valid, `${path.basename(article)} is valid, but shouldn't be` );
+        assert.isAtLeast( validate.errors.length, 1 );
       });
     });
   });
