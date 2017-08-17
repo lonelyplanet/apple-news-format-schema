@@ -1,5 +1,5 @@
 {
-  "name": "apple-news-format-schema",
+  "name": "@lonelyplanet/apple-news-format-schema",
   "version": "1.4.0",
   "private": true,
   "license": "MIT",
@@ -26,13 +26,17 @@
   },
   "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme",
   "scripts": {
+    "lint": "eslint --fix test",
     "test": "mocha --colors"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "ajv": "^5.2.2",
+    "chai": "^4.1.1",
+    "eslint": "^4.0",
+    "eslint-config-webdeveric": "^0.2",
+    "fs-extra": "^4.0.1",
     "glob": "^7.1.1",
-    "jsonschema": "^1.1.1",
-    "mocha": "^3.2.0",
-    "request": "^2.79.0"
+    "mocha": "^3.5.0",
+    "request": "^2.81.0"
   }
 }
