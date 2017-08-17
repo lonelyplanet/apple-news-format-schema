@@ -1,5 +1,7 @@
 # Apple News Format schema
 
+[![Build Status](https://travis-ci.org/lonelyplanet/apple-news-format-schema.svg?branch=master)](https://travis-ci.org/lonelyplanet/apple-news-format-schema)
+
 This schema covers version `1.4` of the Apple News Format.
 
 https://lonelyplanet.github.io/apple-news-format-schema/schema.json
