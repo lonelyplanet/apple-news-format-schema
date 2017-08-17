@@ -9,8 +9,8 @@ https://lonelyplanet.github.io/apple-news-format-schema/schema.json
 I've included the [example articles from Apple](https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles.zip) and I use this [schema](docs/schema.json) to validate them when running tests.
 
 ```shell
-npm install
-npm test
+make install
+make test
 ```
 
 ## Links
