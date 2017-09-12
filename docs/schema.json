@@ -67,6 +67,16 @@
         "bannerType": {
           "$ref": "#/definitions/bannerType"
         },
+        "distanceFromMedia": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/unitsOfMeasure"
+            },
+            {
+              "default": 0
+            }
+          ]
+        },
         "frequency": {
           "type": "integer",
           "multipleOf": 1.0,
@@ -489,7 +499,8 @@
               "$ref": "#/definitions/absInt"
             },
             "hangingPunctuation": {
-              "type": "boolean"
+              "type": "boolean",
+              "default": false
             },
             "hyphenation": {
               "type": "boolean"
@@ -854,7 +865,7 @@
         },
         {
           "type": "string",
-          "pattern": "^[0-9]+(v(h|w|min|max)|gut|cw|pt)?$"
+          "pattern": "^[0-9]+(vh|vw|vmin|vmax|gut|cw|pt|dg|dm)?$"
         }
       ]
     },
@@ -874,6 +885,9 @@
           "$ref": "#/definitions/absInt"
         },
         "targetComponentIdentifier": {
+          "type": "string"
+        },
+        "target": {
           "type": "string"
         }
       },
@@ -1145,9 +1159,6 @@
           "$ref": "#/definitions/tweetComponent"
         },
         {
-          "$ref": "#/definitions/vinePostComponent"
-        },
-        {
           "$ref": "#/definitions/imageComponent"
         },
         {
@@ -1299,6 +1310,9 @@
                 "container"
               ]
             },
+            "contentDisplay": {
+              "$ref": "#/definitions/contentDisplay"
+            },
             "components": {
               "$ref": "#/definitions/componentsArray"
             }
@@ -1317,6 +1331,9 @@
               "enum": [
                 "chapter"
               ]
+            },
+            "contentDisplay": {
+              "$ref": "#/definitions/contentDisplay"
             },
             "components": {
               "$ref": "#/definitions/componentsArray"
@@ -1358,6 +1375,9 @@
               "enum": [
                 "section"
               ]
+            },
+            "contentDisplay": {
+              "$ref": "#/definitions/contentDisplay"
             },
             "components": {
               "$ref": "#/definitions/componentsArray"
@@ -1535,35 +1555,6 @@
                 },
                 {
                   "pattern": "twitter\\.com/.+"
-                }
-              ]
-            }
-          },
-          "required": [
-            "URL"
-          ]
-        }
-      ]
-    },
-    "vinePostComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractComponent"
-        },
-        {
-          "properties": {
-            "role": {
-              "enum": [
-                "vine_post"
-              ]
-            },
-            "URL": {
-              "allOf": [
-                {
-                  "$ref": "#/definitions/httpURL"
-                },
-                {
-                  "pattern": "^https://vine\\.co/.+"
                 }
               ]
             }
@@ -1967,6 +1958,66 @@
       "required": [
         "type",
         "URL"
+      ]
+    },
+    "contentDisplay": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "collection"
+          ]
+        },
+        "distribution": {
+          "type": "string",
+          "enum": [
+            "narrow",
+            "wide"
+          ],
+          "default": "wide"
+        },
+        "gutter": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/unitsOfMeasure"
+            },
+            {
+              "default": 0
+            }
+          ]
+        },
+        "maximumWidth": {
+          "$ref": "#/definitions/unitsOfMeasure"
+        },
+        "minimumWidth": {
+          "$ref": "#/definitions/unitsOfMeasure"
+        },
+        "rowSpacing": {
+          "allOf": [
+            {
+              "$ref": "#/definitions/unitsOfMeasure"
+            },
+            {
+              "default": 0
+            }
+          ]
+        },
+        "variableSizing": {
+          "type": "boolean",
+          "default": false
+        },
+        "widows": {
+          "type": "string",
+          "enum": [
+            "equalize",
+            "optimize"
+          ],
+          "default": "optimize"
+        }
+      },
+      "required": [
+        "type"
       ]
     }
   }
