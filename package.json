@@ -31,12 +31,12 @@
   },
   "devDependencies": {
     "ajv": "^5.2.2",
-    "chai": "^4.1.1",
-    "eslint": "^4.0",
+    "chai": "^4.1.2",
+    "eslint": "^4.6.1",
     "eslint-config-webdeveric": "^0.2",
     "fs-extra": "^4.0.1",
     "glob": "^7.1.1",
-    "mocha": "^3.5.0",
+    "mocha": "^3.5.3",
     "request": "^2.81.0"
   }
 }
