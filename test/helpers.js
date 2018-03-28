@@ -3,7 +3,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const crypto = require('crypto');
 const request = require('request');
-const packageName = require('../package.json').name;
+const { name } = require('../package.json');
 
 function md5( data )
 {
@@ -12,7 +12,7 @@ function md5( data )
 
 function ensureTmpDirExists()
 {
-  const tmpDir = path.join( os.tmpdir(), packageName );
+  const tmpDir = path.join( os.tmpdir(), name );
 
   return fs.ensureDir( tmpDir ).then( () => tmpDir );
 }
@@ -26,10 +26,10 @@ function loadSchema( uri )
       const localSchemaExists = await fs.pathExists( hashedPath );
 
       if ( localSchemaExists ) {
-        fs.readJson( hashedPath ).then( resolve, reject );
+        fs.readFile( hashedPath, (err, content) => err ? reject( err ) : resolve( content ) );
       } else {
         request( uri ).pipe( fs.createWriteStream( hashedPath ) ).on('finish', () => {
-          fs.readJson( hashedPath ).then( resolve, reject );
+          fs.readFile( hashedPath, (err, content) => err ? reject( err ) : resolve( content ) );
         });
       }
     } catch ( error ) {
