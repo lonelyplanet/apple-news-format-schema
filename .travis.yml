@@ -5,3 +5,10 @@ install:
   - npm install
 script:
   - npm test
+before_install:
+  - npm install -g npm@latest
+  - npm --version
+install:
+  - npm ci
+script:
+  - npm test
