@@ -1,6 +1,6 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "https://lonelyplanet.github.io/apple-news-format-schema/schema.json",
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "https://lonelyplanet.github.io/apple-news-format-schema/schema.json",
   "title": "Apple News Format schema",
   "description": "Describes article.json",
   "type": "object",
@@ -224,9 +224,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "fading_sticky_header"
-              ]
+              "const": "fading_sticky_header"
             },
             "fadeColor": {
               "$ref": "#/definitions/hexColor"
@@ -243,9 +241,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "parallax_scale"
-              ]
+              "const": "parallax_scale"
             }
           }
         }
@@ -354,9 +350,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "linear_gradient"
-          ]
+          "const": "linear_gradient"
         },
         "colorStops": {
           "type": "array",
@@ -380,9 +374,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "video"
-          ]
+          "const": "video"
         },
         "URL": {
           "$ref": "#/definitions/httpURL"
@@ -416,9 +408,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "image"
-          ]
+          "const": "image"
         },
         "URL": {
           "$ref": "#/definitions/URL"
@@ -917,9 +907,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "appear"
-              ]
+              "const": "appear"
             }
           }
         }
@@ -933,9 +921,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "fade_in"
-              ]
+              "const": "fade_in"
             },
             "initialAlpha": {
               "$ref": "#/definitions/percentage"
@@ -952,9 +938,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "move_in"
-              ]
+              "const": "move_in"
             },
             "preferredStartingPosition": {
               "type": "string",
@@ -975,9 +959,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "scale_fade"
-              ]
+              "const": "scale_fade"
             },
             "initialAlpha": {
               "$ref": "#/definitions/percentage"
@@ -1024,9 +1006,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "background_motion"
-              ]
+              "const": "background_motion"
             }
           }
         }
@@ -1040,9 +1020,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "background_parallax"
-              ]
+              "const": "background_parallax"
             }
           }
         }
@@ -1056,9 +1034,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "motion"
-              ]
+              "const": "motion"
             }
           }
         }
@@ -1072,9 +1048,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "parallax"
-              ]
+              "const": "parallax"
             },
             "factor": {
               "type": "number",
@@ -1093,9 +1067,7 @@
         {
           "properties": {
             "type": {
-              "enum": [
-                "springy"
-              ]
+              "const": "springy"
             }
           }
         }
@@ -1271,9 +1243,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "banner_advertisement"
-              ]
+              "const": "banner_advertisement"
             },
             "bannerType": {
               "$ref": "#/definitions/bannerType"
@@ -1290,9 +1260,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "medium_rectangle_advertisement"
-              ]
+              "const": "medium_rectangle_advertisement"
             }
           }
         }
@@ -1306,9 +1274,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "container"
-              ]
+              "const": "container"
             },
             "contentDisplay": {
               "$ref": "#/definitions/contentDisplay"
@@ -1328,9 +1294,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "chapter"
-              ]
+              "const": "chapter"
             },
             "contentDisplay": {
               "$ref": "#/definitions/contentDisplay"
@@ -1353,9 +1317,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "header"
-              ]
+              "const": "header"
             },
             "components": {
               "$ref": "#/definitions/componentsArray"
@@ -1372,9 +1334,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "section"
-              ]
+              "const": "section"
             },
             "contentDisplay": {
               "$ref": "#/definitions/contentDisplay"
@@ -1397,9 +1357,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "divider"
-              ]
+              "const": "divider"
             },
             "stroke": {
               "$ref": "#/definitions/strokeStyle"
@@ -1447,9 +1405,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "video"
-              ]
+              "const": "video"
             },
             "stillURL": {
               "$ref": "#/definitions/URL"
@@ -1486,9 +1442,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "facebook_post"
-              ]
+              "const": "facebook_post"
             },
             "URL": {
               "allOf": [
@@ -1515,9 +1469,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "instagram"
-              ]
+              "const": "instagram"
             },
             "URL": {
               "allOf": [
@@ -1544,9 +1496,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "tweet"
-              ]
+              "const": "tweet"
             },
             "URL": {
               "allOf": [
@@ -1621,9 +1571,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "map"
-              ]
+              "const": "map"
             },
             "items": {
               "type": "array",
@@ -1643,9 +1591,7 @@
         {
           "properties": {
             "role": {
-              "enum": [
-                "place"
-              ]
+              "const": "place"
             }
           },
           "required": [
@@ -1917,9 +1863,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "link"
-          ]
+          "const": "link"
         },
         "rangeLength": {
           "$ref": "#/definitions/absInt"
@@ -1944,9 +1888,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "image"
-          ]
+          "const": "image"
         },
         "URL": {
           "$ref": "#/definitions/URL"
@@ -1965,9 +1907,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": [
-            "collection"
-          ]
+          "const": "collection"
         },
         "distribution": {
           "type": "string",
