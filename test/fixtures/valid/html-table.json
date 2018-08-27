@@ -1,0 +1,18 @@
+{
+  "version": "1.7",
+  "identifier": "HTML-Table",
+  "title": "HTML Table",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": [
+    {
+      "role": "htmltable",
+      "html": "<table><tr><td>data</td></tr></table>"
+    }
+  ]
+}

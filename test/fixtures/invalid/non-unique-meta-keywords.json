@@ -1,0 +1,27 @@
+{
+  "version": "1.0",
+  "identifier": "too-many-keywords",
+  "title": "Too many keywords",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 70,
+    "gutter": 40
+  },
+  "metadata": {
+    "keywords": [
+      "keyword",
+      "keyword"
+    ]
+  },
+  "documentStyle": {
+    "backgroundColor": "#FFF"
+  },
+  "components": [
+    {
+      "role": "body",
+      "text": "Hello, World!"
+    }
+  ]
+}

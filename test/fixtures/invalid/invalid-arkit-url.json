@@ -1,0 +1,19 @@
+{
+  "version": "1.7",
+  "identifier": "arkit",
+  "title": "ARKit",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": [
+    {
+      "role": "arkit",
+      "caption": "Lunar Lander",
+      "URL": "https://example.com/assets/lunar-lander/main.wrongExtension"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "identifier": "content-display",
+  "title": "Bad content display property",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 70,
+    "gutter": 40
+  },
+  "documentStyle": {
+    "backgroundColor": "#FFF"
+  },
+  "components": [
+    {
+      "role": "container",
+      "contentDisplay": {
+        "type": "collection",
+        "minimumWidth": 0,
+        "gutter": "15px",
+        "rowSpacing": "30vx",
+        "distribution": "random"
+      },
+      "layout": "collection-layout",
+      "components": [
+        {
+          "role": "body",
+          "text": "Hello, World!"
+        }
+      ]
+    }
+  ]
+}

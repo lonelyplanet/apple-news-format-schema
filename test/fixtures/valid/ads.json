@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "identifier": "Advertisement",
+  "title": "Advertisement",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": [
+    {
+      "role": "body",
+      "text": "Hello, World!"
+    },
+    {
+      "role": "banner_advertisement",
+      "bannerType": "standard",
+      "distanceFromMedia": "20vmin"
+    },
+    {
+      "role": "body",
+      "text": "more body content"
+    },
+    {
+      "role": "medium_rectangle_advertisement",
+      "bannerType": "standard",
+      "distanceFromMedia": 10
+    },
+    {
+      "role": "body",
+      "text": "more body content"
+    }
+  ]
+}
