@@ -1,0 +1,26 @@
+{
+  "version": "1.7",
+  "identifier": "Banner-Advertisement",
+  "title": "Banner Advertisement",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": [
+    {
+      "role": "banner_advertisement",
+      "bannerType": "standard"
+    },
+    {
+      "role": "container",
+      "components": [
+        {
+          "role": "banner_advertisement"
+        }
+      ]
+    }
+  ]
+}

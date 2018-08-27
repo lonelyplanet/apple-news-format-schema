@@ -45,20 +45,7 @@
       ]
     },
     "components": {
-      "type": "array",
-      "items": {
-        "anyOf": [
-          {
-            "$ref": "#/definitions/anyComponent"
-          },
-          {
-            "$ref": "#/definitions/bannerAdvertisementComponent"
-          },
-          {
-            "$ref": "#/definitions/mediumRectangleAdvertisementComponent"
-          }
-        ]
-      }
+      "$ref": "#/definitions/componentsArray"
     },
     "advertisingSettings": {
       "type": "object",
@@ -1343,6 +1330,12 @@
         },
         {
           "$ref": "#/definitions/arKitComponent"
+        },
+        {
+          "$ref": "#/definitions/bannerAdvertisementComponent"
+        },
+        {
+          "$ref": "#/definitions/mediumRectangleAdvertisementComponent"
         }
       ]
     },
