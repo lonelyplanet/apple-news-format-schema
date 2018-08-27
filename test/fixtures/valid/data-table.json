@@ -1,0 +1,81 @@
+{
+  "version": "1.7",
+  "identifier": "Data-Table",
+  "title": "Data Table",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": [
+    {
+      "role": "datatable",
+      "showDescriptorLabels": true,
+      "sortBy": [
+        {
+          "descriptor": "id-name",
+          "direction": "descending"
+        }
+      ],
+      "data": {
+        "descriptors": [
+          {
+            "identifier": "id-name",
+            "key": "name",
+            "label": {
+              "type": "formatted_text",
+              "format": "html",
+              "text": "<strong>Name</strong>"
+            },
+            "dataType": "string"
+          },
+          {
+            "identifier": "id-occupation",
+            "key": "occupation",
+            "label": "Occupation",
+            "dataType": "string"
+          }
+        ],
+        "records": [
+          {
+            "name": "Amelia Earhart",
+            "occupation": "Pilot"
+          },
+          {
+            "name": "Grace Hopper",
+            "occupation": "Computer Scientist"
+          }
+        ]
+      },
+      "style": {
+        "tableStyle": {
+          "rows": {
+            "backgroundColor": "#fff",
+            "divider": {
+              "width": 1,
+              "color": "#ddd"
+            }
+          },
+          "headerRows": {
+            "backgroundColor": "#ccc",
+            "divider": {
+              "width": 2,
+              "color": "#999"
+            }
+          },
+          "cells": {
+            "padding": 6,
+            "verticalAlignment": "top"
+          }
+        }
+      },
+      "layout": {
+        "columnStart": 0,
+        "columnSpan": 7,
+        "margin": 20
+      }
+    }
+  ]
+}
