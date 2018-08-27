@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/lonelyplanet/apple-news-format-schema.svg?branch=master)](https://travis-ci.org/lonelyplanet/apple-news-format-schema)
 
-This schema covers version `1.4` of the Apple News Format.
+This schema describes the Apple News Format (`article.json` documents).
 
 https://lonelyplanet.github.io/apple-news-format-schema/schema.json
 
@@ -19,6 +19,6 @@ make test
 
 - [JSON Schema validators](http://json-schema.org/implementations.html)
 - [Apple News](http://www.apple.com/news/)
-- [News design tutorial](https://developer.apple.com/library/content/documentation/General/Conceptual/News_Design_Tutorial/)
-- [Apple News Format reference](https://developer.apple.com/library/content/documentation/General/Conceptual/Apple_News_Format_Ref/)
-- [News API reference](https://developer.apple.com/library/content/documentation/General/Conceptual/News_API_Ref/)
+- [Apple News Format Tutorials](https://developer.apple.com/documentation/apple_news/apple_news_format_tutorials)
+- [Apple News Format reference](https://developer.apple.com/documentation/apple_news/apple_news_format)
+- [News API reference](https://developer.apple.com/documentation/apple_news/apple_news_api)
