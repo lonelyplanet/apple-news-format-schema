@@ -8,35 +8,46 @@
   "properties": {
     "version": {
       "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+$"
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "description": "The version of Apple News Format used in the JSON document."
     },
     "identifier": {
       "type": "string",
-      "pattern": "^[a-zA-Z0-9_-]{1,64}$"
+      "pattern": "^[a-zA-Z0-9_-]{1,64}$",
+      "description": "An unique, publisher-provided identifier for this article."
     },
     "title": {
       "type": "string",
-      "pattern": ".+"
+      "pattern": ".+",
+      "description": "The article title or headline. Should be plain text."
     },
     "language": {
       "type": "string",
-      "pattern": "^[a-zA-Z-]+(_[a-zA-Z-]+)?$"
+      "pattern": "^[a-zA-Z-]+(_[a-zA-Z-]+)?$",
+      "description": "A code that indicates the language of the article."
     },
     "layout": {
       "type": "object",
       "additionalProperties": false,
+      "description": "The article's column system.",
       "properties": {
         "columns": {
+          "description": "The number of columns this article was designed for.",
           "$ref": "#/definitions/absIntMin1"
         },
         "width": {
+          "description": "The width (in points) this article was designed for.",
           "$ref": "#/definitions/absIntMin1"
         },
         "gutter": {
-          "$ref": "#/definitions/absInt"
+          "$ref": "#/definitions/absInt",
+          "default": 20,
+          "description": "The gutter provides spacing between columns."
         },
         "margin": {
-          "$ref": "#/definitions/absInt"
+          "$ref": "#/definitions/absInt",
+          "default": 60,
+          "description": "The outer (left and right) margins of the article, in points."
         }
       },
       "required": [
@@ -45,34 +56,33 @@
       ]
     },
     "components": {
-      "$ref": "#/definitions/componentsArray"
+      "$ref": "#/definitions/componentsArray",
+      "description": "The content of this article."
     },
     "advertisingSettings": {
       "type": "object",
       "additionalProperties": false,
+      "description": "These settings affect the frequency and placement of ads that are automatically placed in your article.",
       "properties": {
         "bannerType": {
           "$ref": "#/definitions/bannerType"
         },
         "distanceFromMedia": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/unitsOfMeasure"
-            },
-            {
-              "default": 0
-            }
-          ]
+          "$ref": "#/definitions/unitsOfMeasure",
+          "default": 0,
+          "description": "The minimum required distance between automatically inserted advertisement components and media (video, images, and embeds)."
         },
         "frequency": {
           "type": "integer",
           "multipleOf": 1.0,
           "minimum": 0,
-          "maximum": 10
+          "maximum": 10,
+          "description": "Leaving this property out, or providing a value of 0 means that no advertisement will be inserted."
         },
         "layout": {
           "type": "object",
           "additionalProperties": false,
+          "description": "An automatically inserted advertising component uses the surrounding margins to make sure it positions itself nicely in between components.",
           "properties": {
             "margin": {
               "$ref": "#/definitions/margin"
@@ -90,15 +100,19 @@
     "metadata": {
       "type": "object",
       "additionalProperties": false,
+      "description": "Information about your article.",
       "properties": {
         "authors": {
-          "$ref": "#/definitions/uniqueStringsArray"
+          "$ref": "#/definitions/uniqueStringsArray",
+          "description": "The authors of this article, who may or may not be shown in the Byline component."
         },
         "campaignData": {
-          "type": "object"
+          "type": "object",
+          "description": "Custom key-value pairs that can be used for ad targeting."
         },
         "canonicalURL": {
-          "$ref": "#/definitions/httpURL"
+          "$ref": "#/definitions/httpURL",
+          "description": "The canonical URL of a web version of this article."
         },
         "coverArt": {
           "type": "array",
@@ -133,7 +147,8 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/linkedArticle"
-          }
+          },
+          "description": "Links to other articles in Apple News."
         }
       },
       "patternProperties": {
@@ -148,9 +163,11 @@
     "documentStyle": {
       "type": "object",
       "additionalProperties": false,
+      "description": "An object containing the background color of the article.",
       "properties": {
         "backgroundColor": {
-          "$ref": "#/definitions/color"
+          "$ref": "#/definitions/color",
+          "default": "#FFF"
         }
       },
       "required": [
@@ -159,6 +176,7 @@
     },
     "textStyles": {
       "type": "object",
+      "description": "The Text Style objects available to use inline for text in Text Components.",
       "patternProperties": {
         ".+": {
           "$ref": "#/definitions/textStyle"
@@ -167,6 +185,7 @@
     },
     "componentLayouts": {
       "type": "object",
+      "description": "Document-level component layout objects that can be referenced by their key within the componentLayouts object.",
       "patternProperties": {
         ".+": {
           "$ref": "#/definitions/componentLayout"
@@ -175,6 +194,7 @@
     },
     "componentStyles": {
       "type": "object",
+      "description": "The component styles that can be referenced by components within this document.",
       "patternProperties": {
         ".+": {
           "$ref": "#/definitions/componentStyle"
@@ -183,6 +203,7 @@
     },
     "componentTextStyles": {
       "type": "object",
+      "description": "The component text styles that can be referenced by other components in this document.",
       "patternProperties": {
         ".+": {
           "$ref": "#/definitions/componentTextStyle"
@@ -196,7 +217,8 @@
     "title",
     "language",
     "layout",
-    "components"
+    "components",
+    "componentTextStyles"
   ],
   "definitions": {
     "abstractScene": {
@@ -265,7 +287,8 @@
         "double_height",
         "large"
       ],
-      "default": "any"
+      "default": "any",
+      "description": "The type of ad."
     },
     "margin": {
       "oneOf": [
@@ -701,13 +724,79 @@
       "type": "object",
       "properties": {
         "backgroundColor": {
-          "$ref": "#/definitions/color"
+          "$ref": "#/definitions/color",
+          "default": "transparent"
+        },
+        "fontFamily": {
+          "type": "string"
         },
         "fontName": {
-          "type": "string"
+          "type": "string",
+          "description": "Use fontName to refer to an explicit font variant's postscript name."
         },
         "fontSize": {
           "$ref": "#/definitions/absIntMin1"
+        },
+        "fontStyle": {
+          "type": "string",
+          "enum": [
+            "normal",
+            "italic",
+            "oblique"
+          ]
+        },
+        "fontWeight": {
+          "oneOf": [
+            {
+              "type": "integer",
+              "multipleOf": 100.0,
+              "minimum": 100,
+              "maximum": 900
+            },
+            {
+              "type": "string",
+              "enum": [
+                "thin",
+                "extra-light",
+                "extralight",
+                "ultra-light",
+                "light",
+                "regular",
+                "normal",
+                "book",
+                "roman",
+                "medium",
+                "semi-bold",
+                "semibold",
+                "demi-bold",
+                "demibold",
+                "bold",
+                "extra-bold",
+                "extrabold",
+                "ultra-bold",
+                "ultrabold",
+                "black",
+                "heavy",
+                "lighter",
+                "bolder"
+              ]
+            }
+          ]
+        },
+        "fontWidth": {
+          "type": "string",
+          "enum": [
+            "ultra-condensed",
+            "extra-condensed",
+            "condensed",
+            "semi-condensed",
+            "normal",
+            "semi-expanded",
+            "expanded",
+            "extra-expanded",
+            "ultra-expanded"
+          ],
+          "description": "Defines the width characteristics of a font variant between normal, condensed and expanded."
         },
         "orderedListItems": {
           "$ref": "#/definitions/listItemStyle"
@@ -994,6 +1083,7 @@
         "teal",
         "thistle",
         "tomato",
+        "transparent",
         "turquoise",
         "violet",
         "wheat",
@@ -2269,14 +2359,8 @@
           "default": "wide"
         },
         "gutter": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/unitsOfMeasure"
-            },
-            {
-              "default": 0
-            }
-          ]
+          "$ref": "#/definitions/unitsOfMeasure",
+          "default": 0
         },
         "maximumWidth": {
           "$ref": "#/definitions/unitsOfMeasure"
@@ -2285,14 +2369,8 @@
           "$ref": "#/definitions/unitsOfMeasure"
         },
         "rowSpacing": {
-          "allOf": [
-            {
-              "$ref": "#/definitions/unitsOfMeasure"
-            },
-            {
-              "default": 0
-            }
-          ]
+          "$ref": "#/definitions/unitsOfMeasure",
+          "default": 0
         },
         "variableSizing": {
           "type": "boolean",
