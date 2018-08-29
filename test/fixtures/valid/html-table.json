@@ -14,5 +14,8 @@
       "role": "htmltable",
       "html": "<table><tr><td>data</td></tr></table>"
     }
-  ]
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
 }

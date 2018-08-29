@@ -26,5 +26,8 @@
       "role": "tweet",
       "URL": "http://twitter.com/"
     }
-  ]
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
 }

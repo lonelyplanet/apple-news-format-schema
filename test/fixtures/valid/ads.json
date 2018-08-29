@@ -32,5 +32,8 @@
       "role": "body",
       "text": "more body content"
     }
-  ]
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
 }

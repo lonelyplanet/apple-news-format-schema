@@ -15,5 +15,8 @@
       "caption": "Lunar Lander",
       "URL": "https://example.com/assets/lunar-lander/main.usdz"
     }
-  ]
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
 }

@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "identifier": "missing-component-text-styles",
+  "language": "en",
+  "title": "Missing component text styles",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": []
+}

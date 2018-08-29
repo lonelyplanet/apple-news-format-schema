@@ -13,5 +13,8 @@
     {
       "role": "htmltable"
     }
-  ]
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
 }

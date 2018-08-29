@@ -3,5 +3,8 @@
   "identifier": "missing layout",
   "language": "en",
   "title": "missing layout",
-  "components": []
+  "components": [],
+  "componentTextStyles": {
+    "default": {}
+  }
 }

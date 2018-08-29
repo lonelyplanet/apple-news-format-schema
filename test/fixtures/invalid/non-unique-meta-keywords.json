@@ -23,5 +23,8 @@
       "role": "body",
       "text": "Hello, World!"
     }
-  ]
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
 }
