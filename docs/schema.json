@@ -2350,6 +2350,15 @@
           "type": "string",
           "const": "collection"
         },
+        "alignment": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right"
+          ],
+          "default": "left"
+        },
         "distribution": {
           "type": "string",
           "enum": [
@@ -2363,7 +2372,8 @@
           "default": 0
         },
         "maximumWidth": {
-          "$ref": "#/definitions/unitsOfMeasure"
+          "$ref": "#/definitions/unitsOfMeasure",
+          "default": "50cw"
         },
         "minimumWidth": {
           "$ref": "#/definitions/unitsOfMeasure"
