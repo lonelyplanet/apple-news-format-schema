@@ -32,7 +32,7 @@
   "devDependencies": {
     "ajv": "^6.5.3",
     "chai": "^4.1.2",
-    "eslint": "^5.5.0",
+    "eslint": "^5.6.0",
     "eslint-config-webdeveric": "^0.3",
     "fs-extra": "^7.0.0",
     "glob": "^7.1.3",
