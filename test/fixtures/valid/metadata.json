@@ -1,0 +1,43 @@
+{
+  "version": "1.7",
+  "identifier": "metadata",
+  "title": "metadata",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "metadata": {
+    "transparentToolbar": false,
+    "excerpt": "Hello, World!",
+    "thumbnailURL": "bundle://thumbnail.jpg",
+    "coverArt": [
+      {
+        "type": "image",
+        "URL": "bundle://coverart.jpg"
+      }
+    ],
+    "links": [
+      {
+        "URL": "https://example.com/related",
+        "relationship": "related"
+      },
+      {
+        "URL": "https://example.com/promoted",
+        "relationship": "promoted"
+      }
+    ]
+  },
+  "components": [
+    {
+      "role": "body",
+      "format": "html",
+      "text": "<p>Hello, World!</p>"
+    }
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
+}

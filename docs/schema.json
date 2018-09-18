@@ -363,7 +363,7 @@
     },
     "appleNewsURL": {
       "type": "string",
-      "pattern": "^https://apple.news/.+",
+      "pattern": "^https://apple\\.news/.+",
       "format": "uri"
     },
     "colorStop": {
@@ -2403,7 +2403,7 @@
       "type": "object",
       "properties": {
         "URL": {
-          "oneOf": [
+          "anyOf": [
             {
               "$ref": "#/definitions/appleNewsURL"
             },

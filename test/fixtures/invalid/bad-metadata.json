@@ -1,0 +1,31 @@
+{
+  "version": "1.7",
+  "identifier": "bad-metadata",
+  "title": "bad-metadata",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "metadata": {
+    "transparentToolbar": 0,
+    "links": [
+      {
+        "URL": "bundle://bad.file",
+        "relationship": "none"
+      }
+    ]
+  },
+  "components": [
+    {
+      "role": "body",
+      "format": "html",
+      "text": "<p>Hello, World!</p>"
+    }
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
+}
