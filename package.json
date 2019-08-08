@@ -1,6 +1,6 @@
 {
   "name": "@lonelyplanet/apple-news-format-schema",
-  "version": "1.4.0",
+  "version": "1.9.0",
   "private": true,
   "license": "MIT",
   "description": "Apple News Format schema",
@@ -27,10 +27,12 @@
   "homepage": "https://github.com/lonelyplanet/apple-news-format-schema#readme",
   "scripts": {
     "lint": "eslint --fix test",
-    "test": "mocha --colors"
+    "pack": "ajv compile -s docs/schema.json -o validate.js",
+    "test": "mocha --colors 'test/**/*.spec.js'"
   },
   "devDependencies": {
     "ajv": "^6.10.2",
+    "ajv-cli": "^3.0.0",
     "chai": "^4.2.0",
     "eslint": "^6.1.0",
     "eslint-config-webdeveric": "^0.3",
