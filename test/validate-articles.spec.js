@@ -3,16 +3,22 @@ const util = require('util');
 const { assert } = require('chai');
 const glob = require('glob');
 const Ajv = require('ajv');
+
 const schema = require('../docs/schema.json');
+// const behavior = require('../docs/behavior.json');
+
 const { loadSchema } = require('./helpers');
 const validArticles = path.join( __dirname, 'fixtures', 'valid', '*.json' );
 const invalidArticles = path.join( __dirname, 'fixtures', 'invalid', '*.json' );
+const schemaDocuments = path.join( __dirname, '../', 'docs', '*.json' );
 const inspectOptions = { showHidden: true, depth: null };
 
 describe('Apple News Format schema', () => {
   let validate = null;
 
   before( done => {
+    const schemas = glob.sync(schemaDocuments).map( require );
+
     const ajv = new Ajv({
       loadSchema,
       extendRefs: 'fail',
@@ -20,7 +26,7 @@ describe('Apple News Format schema', () => {
 
     ajv.addMetaSchema( require('ajv/lib/refs/json-schema-draft-06.json') );
 
-    ajv.compileAsync(schema).then( func => {
+    ajv.addSchema(schemas).compileAsync(schema).then( func => {
       validate = func;
       done();
     }).catch(

@@ -1,0 +1,38 @@
+{
+  "version": "1.9",
+  "identifier": "ConditionalComponent",
+  "title": "Conditional Component",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": [
+    {
+      "role": "photo",
+      "URL": "bundle://summer.jpg",
+      "layout": "exampleLayout",
+      "caption": "Thanks to the record drought, mountain lions have begun to descend from the peaks."
+    }
+  ],
+  "componentLayouts": {
+    "exampleLayout": {
+      "ignoreDocumentMargin": true,
+      "conditional": [
+        {
+          "ignoreDocumentMargin": false,
+          "conditions": [
+            {
+              "minViewportWidth": 415
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "componentTextStyles": {
+    "default": {}
+  }
+}

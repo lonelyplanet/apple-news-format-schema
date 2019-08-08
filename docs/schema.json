@@ -7,9 +7,7 @@
   "additionalProperties": false,
   "properties": {
     "version": {
-      "type": "string",
-      "pattern": "^[0-9]+\\.[0-9]+$",
-      "description": "The version of Apple News Format used in the JSON document."
+      "$ref": "#/definitions/specVersion"
     },
     "identifier": {
       "type": "string",
@@ -60,6 +58,7 @@
       "description": "The content of this article."
     },
     "advertisingSettings": {
+      "$comment": "Deprecated - Use AdvertisementAutoPlacement instead",
       "type": "object",
       "additionalProperties": false,
       "description": "These settings affect the frequency and placement of ads that are automatically placed in your article.",
@@ -91,6 +90,14 @@
           "required": [
             "margin"
           ]
+        }
+      }
+    },
+    "autoplacement": {
+      "type": "object",
+      "properties": {
+        "advertisement": {
+          "$ref": "#/definitions/advertisementAutoPlacement"
         }
       }
     },
@@ -134,7 +141,7 @@
           ]
         },
         "thumbnailURL": {
-          "$ref": "#/definitions/URL"
+          "$ref": "#/definitions/imageURL"
         },
         "transparentToolbar": {
           "type": "boolean",
@@ -221,6 +228,79 @@
     "componentTextStyles"
   ],
   "definitions": {
+    "advertisementAutoPlacement": {
+      "description": "The object for defining the automatic placement of advertisements.",
+      "$comment": "ANF 1.9",
+      "type": "object",
+      "properties": {
+        "bannerType": {
+          "$ref": "#/definitions/bannerType"
+        },
+        "conditional": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/conditionalAutoPlacement"
+          }
+        },
+        "distanceFromMedia": {
+          "$ref": "#/definitions/unitsOfMeasure",
+          "default": 0,
+          "description": "The minimum required distance between automatically inserted advertisement components and media (video, images, and embeds)."
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "frequency": {
+          "type": "integer",
+          "multipleOf": 1.0,
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Leaving this property out, or providing a value of 0 means that no advertisement will be inserted."
+        },
+        "layout": {
+          "$ref": "#/definitions/autoPlacementLayout"
+        }
+      }
+    },
+    "conditionsArray": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/condition"
+      }
+    },
+    "conditionalAutoPlacement": {
+      "description": "The object for defining conditional properties for an automatically placed component, and when the conditional properties are in effect.",
+      "$comment": "ANF 1.9",
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "$ref": "#/definitions/conditionsArray"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "layout": {
+          "$ref": "#/definitions/autoPlacementLayout"
+        }
+      }
+    },
+    "autoPlacementLayout": {
+      "description": "The object for defining the margin above and below advertising components.",
+      "$comment": "ANF 1.9",
+      "type": "object",
+      "properties": {
+        "margin": {
+          "$ref": "#/definitions/margin"
+        }
+      }
+    },
+    "specVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$",
+      "description": "The version of Apple News Format used in the JSON document."
+    },
     "abstractScene": {
       "type": "object",
       "properties": {
@@ -366,6 +446,20 @@
       "pattern": "^https://apple\\.news/.+",
       "format": "uri"
     },
+    "imageURL": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/URL"
+        },
+        {
+          "pattern": "\\.(jpe?g|gif|png)$"
+        }
+      ]
+    },
+    "cloudKitID": {
+      "$comment": "TODO: add pattern validation",
+      "type": "string"
+    },
     "colorStop": {
       "typpe": "object",
       "additionalProperties": false,
@@ -417,7 +511,7 @@
           "$ref": "#/definitions/httpURL"
         },
         "stillURL": {
-          "$ref": "#/definitions/URL"
+          "$ref": "#/definitions/imageURL"
         },
         "fillMode": {
           "$ref": "#/definitions/fillMode"
@@ -448,7 +542,7 @@
           "const": "image"
         },
         "URL": {
-          "$ref": "#/definitions/URL"
+          "$ref": "#/definitions/imageURL"
         },
         "attachment": {
           "type": "string",
@@ -628,16 +722,18 @@
         }
       }
     },
-    "componentLayout": {
+    "baseComponentLayout": {
       "type": "object",
       "properties": {
         "columnSpan": {
           "$ref": "#/definitions/absIntMin1"
         },
         "columnStart": {
+          "description": "The first column is 0, not 1",
           "$ref": "#/definitions/absInt"
         },
         "contentInset": {
+          "$comment": "Deprecated in ANF 1.9",
           "oneOf": [
             {
               "type": "boolean"
@@ -664,6 +760,16 @@
         },
         "minimumHeight": {
           "$ref": "#/definitions/unitsOfMeasure"
+        },
+        "minimumWidth": {
+          "description": "A value that defines the minimum width of the layout when used within a Container with HorizontalStackDisplay as the specified contentDisplay type.",
+          "$ref": "#/definitions/unitsOfMeasure"
+        },
+        "maximumWidth": {
+          "$ref": "#/definitions/unitsOfMeasure"
+        },
+        "padding": {
+          "$ref": "#/definitions/padding"
         }
       },
       "patternProperties": {
@@ -685,6 +791,137 @@
           "default": "none"
         }
       }
+    },
+    "componentLayout": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseComponentLayout"
+        },
+        {
+          "properties": {
+            "conditional": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/conditionalComponentLayout"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "conditionalComponentLayout": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseComponentLayout"
+        },
+        {
+          "properties": {
+            "conditions": {
+              "$ref": "#/definitions/conditionsArray"
+            }
+          }
+        }
+      ]
+    },
+    "condition": {
+      "$comment": "Added in ANF 1.9 - https://developer.apple.com/documentation/apple_news/condition",
+      "type": "object",
+      "properties": {
+        "horizontalSizeClass": {
+          "description": "A string describing the width at which the article is displayed.",
+          "$ref": "#/definitions/sizeClass"
+        },
+        "maxColumns": {
+          "description": "The maximum number of columns in which the article is displayed.",
+          "$ref": "#/definitions/absIntMin1"
+        },
+        "maxContentSizeCategory": {
+          "$ref": "#/definitions/contentSizeCategory",
+          "default": "AX-XXXL"
+        },
+        "maxSpecVersion": {
+          "$ref": "#/definitions/specVersion"
+        },
+        "maxViewportAspectRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxViewportWidth": {
+          "type": "integer"
+        },
+        "minColumns": {
+          "$ref": "#/definitions/absInt"
+        },
+        "minContentSizeCategory": {
+          "$ref": "#/definitions/contentSizeCategory",
+          "default": "XS"
+        },
+        "minSpecVersion": {
+          "$ref": "#/definitions/specVersion"
+        },
+        "minViewportAspectRatio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "minViewportWidth": {
+          "type": "integer"
+        },
+        "platform": {
+          "type": "string",
+          "enum": [
+            "any",
+            "ios",
+            "macos"
+          ]
+        },
+        "subscriptionStatus": {
+          "type": "string",
+          "enum": [
+            "bundle",
+            "subscribed"
+          ]
+        },
+        "verticalSizeClass": {
+          "description": "A string describing the height at which the article is displayed.",
+          "$ref": "#/definitions/sizeClass"
+        },
+        "viewLocation": {
+          "description": "The context of the article.",
+          "type": "string",
+          "enum": [
+            "any",
+            "article",
+            "issue_table_of_contents",
+            "issue"
+          ]
+        }
+      }
+    },
+    "sizeClass": {
+      "type": "string",
+      "enum": [
+        "any",
+        "regular",
+        "compact"
+      ]
+    },
+    "contentSizeCategory": {
+      "description": "A string indicating a dynamic type size at which text in the article is displayed.",
+      "type": "string",
+      "enum": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL",
+        "AX-M",
+        "AX-L",
+        "AX-XL",
+        "AX-XXL",
+        "AX-XXXL"
+      ]
     },
     "textShadow": {
       "type": "object",
@@ -1125,7 +1362,8 @@
         },
         {
           "type": "string",
-          "pattern": "^[0-9]+(vh|vw|vmin|vmax|gut|cw|pt|dg|dm)?$"
+          "pattern": "^[0-9\\.]+(vw|vmin|vmax|vh|dg|dm|cw|gut|pt)?$",
+          "$comment": "Regex copied from https://developer.apple.com/documentation/apple_news/supportedunits"
         }
       ]
     },
@@ -1257,113 +1495,14 @@
         }
       ]
     },
-    "abstractBehavior": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "type"
-      ]
-    },
-    "backgroundMotionBehavior": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractBehavior"
-        },
-        {
-          "properties": {
-            "type": {
-              "const": "background_motion"
-            }
-          }
-        }
-      ]
-    },
-    "backgroundParallaxBehavior": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractBehavior"
-        },
-        {
-          "properties": {
-            "type": {
-              "const": "background_parallax"
-            }
-          }
-        }
-      ]
-    },
-    "motionBehavior": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractBehavior"
-        },
-        {
-          "properties": {
-            "type": {
-              "const": "motion"
-            }
-          }
-        }
-      ]
-    },
-    "parallaxBehavior": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractBehavior"
-        },
-        {
-          "properties": {
-            "type": {
-              "const": "parallax"
-            },
-            "factor": {
-              "type": "number",
-              "minimum": 0.5,
-              "maximum": 2.0
-            }
-          }
-        }
-      ]
-    },
-    "springyBehavior": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/abstractBehavior"
-        },
-        {
-          "properties": {
-            "type": {
-              "const": "springy"
-            }
-          }
-        }
-      ]
-    },
-    "anyBehavior": {
-      "anyOf": [
-        {
-          "$ref": "#/definitions/backgroundMotionBehavior"
-        },
-        {
-          "$ref": "#/definitions/backgroundParallaxBehavior"
-        },
-        {
-          "$ref": "#/definitions/motionBehavior"
-        },
-        {
-          "$ref": "#/definitions/parallaxBehavior"
-        },
-        {
-          "$ref": "#/definitions/springyBehavior"
-        }
-      ]
-    },
     "anyComponent": {
       "anyOf": [
+        {
+          "$ref": "#/definitions/artileTitleComponent"
+        },
+        {
+          "$ref": "#/definitions/articleThumbnailComponent"
+        },
         {
           "$ref": "#/definitions/textualComponent"
         },
@@ -1380,10 +1519,19 @@
           "$ref": "#/definitions/chapterComponent"
         },
         {
+          "$ref": "#/definitions/asideComponent"
+        },
+        {
           "$ref": "#/definitions/headerComponent"
         },
         {
+          "$ref": "#/definitions/articleLinkComponent"
+        },
+        {
           "$ref": "#/definitions/dividerComponent"
+        },
+        {
+          "$ref": "#/definitions/flexibleSpacerComponent"
         },
         {
           "$ref": "#/definitions/embedWebVideoComponent"
@@ -1438,6 +1586,22 @@
         "anchor": {
           "$ref": "#/definitions/anchor"
         },
+        "animation": {
+          "$ref": "#/definitions/anyAnimation"
+        },
+        "behavior": {
+          "$ref": "behavior.json#/definitions/anyBehavior"
+        },
+        "conditional": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/conditionalComponent"
+          }
+        },
+        "hidden": {
+          "type": "boolean",
+          "default": false
+        },
         "identifier": {
           "type": "string"
         },
@@ -1468,25 +1632,63 @@
         "role"
       ]
     },
-    "animatableComponent": {
+    "abstractTextComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/abstractComponent"
         },
         {
-          "$ref": "#/definitions/hasAnimations"
+          "$ref": "#/definitions/baseCaptionDescriptor"
         }
       ]
     },
-    "abstractTextComponent": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/animatableComponent"
+    "conditionalComponent": {
+      "description": "The object for defining conditional properties for a component, and when the conditional properties are in effect.",
+      "$comment": "Added in ANF 1.9",
+      "type": "object",
+      "properties": {
+        "conditions": {
+          "$ref": "#/definitions/conditionsArray"
         },
-        {
-          "$ref": "#/definitions/captionDescriptor"
+        "anchor": {
+          "$ref": "#/definitions/anchor"
+        },
+        "animation": {
+          "$ref": "#/definitions/anyAnimation"
+        },
+        "behavior": {
+          "$ref": "behavior.json#/definitions/anyBehavior"
+        },
+        "hidden": {
+          "type": "boolean",
+          "default": false
+        },
+        "identifier": {
+          "type": "string"
+        },
+        "layout": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": ".+"
+            },
+            {
+              "$ref": "#/definitions/componentLayout"
+            }
+          ]
+        },
+        "style": {
+          "oneOf": [
+            {
+              "type": "string",
+              "pattern": ".+"
+            },
+            {
+              "$ref": "#/definitions/componentStyle"
+            }
+          ]
         }
-      ]
+      }
     },
     "textualComponent": {
       "allOf": [
@@ -1515,6 +1717,23 @@
                 "quote",
                 "title"
               ]
+            }
+          },
+          "required": [
+            "text"
+          ]
+        }
+      ]
+    },
+    "artileTitleComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractTextComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "const": "article_title"
             }
           }
         }
@@ -1551,21 +1770,64 @@
         }
       ]
     },
-    "containerComponent": {
+    "abstractContainerComponent": {
       "allOf": [
         {
           "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
-            "role": {
-              "const": "container"
-            },
-            "contentDisplay": {
-              "$ref": "#/definitions/contentDisplay"
+            "additions": {
+              "description": "Adding a link to a container component makes the entire component interactable. Any links used in its child components are not interactable.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/componentLink"
+              }
             },
             "components": {
               "$ref": "#/definitions/componentsArray"
+            },
+            "contentDisplay": {
+              "oneOf": [
+                {
+                  "$ref": "#/definitions/horizontalStackDisplay"
+                },
+                {
+                  "$ref": "#/definitions/collectionDisplay"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "containerComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractContainerComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "const": "container"
+            }
+          }
+        }
+      ]
+    },
+    "sectionComponent": {
+      "description": "The component for organizing an article into sections.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractContainerComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "const": "section"
+            },
+            "scene": {
+              "$ref": "#/definitions/anyScene"
             }
           }
         }
@@ -1574,21 +1836,29 @@
     "chapterComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/abstractComponent"
+          "$ref": "#/definitions/abstractContainerComponent"
         },
         {
           "properties": {
             "role": {
               "const": "chapter"
             },
-            "contentDisplay": {
-              "$ref": "#/definitions/contentDisplay"
-            },
-            "components": {
-              "$ref": "#/definitions/componentsArray"
-            },
             "scene": {
               "$ref": "#/definitions/anyScene"
+            }
+          }
+        }
+      ]
+    },
+    "asideComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractContainerComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "const": "aside"
             }
           }
         }
@@ -1597,38 +1867,85 @@
     "headerComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractContainerComponent"
         },
         {
           "properties": {
             "role": {
               "const": "header"
-            },
-            "components": {
-              "$ref": "#/definitions/componentsArray"
             }
           }
         }
       ]
     },
-    "sectionComponent": {
+    "articleLinkComponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractContainerComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "const": "article_link"
+            },
+            "articleIdentifier": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/appleNewsURL"
+                },
+                {
+                  "$ref": "#/definitions/cloudKitID"
+                }
+              ]
+            }
+          },
+          "required": [
+            "articleIdentifier"
+          ]
+        }
+      ]
+    },
+    "articleThumbnailComponent": {
+      "description": "The component for displaying a thumbnail image with an article link.",
+      "$comment": "ANF 1.9",
       "allOf": [
         {
           "$ref": "#/definitions/abstractComponent"
         },
         {
+          "$ref": "#/definitions/hasCaptions"
+        },
+        {
           "properties": {
             "role": {
-              "const": "section"
+              "const": "article_thumbnail"
             },
-            "contentDisplay": {
-              "$ref": "#/definitions/contentDisplay"
+            "additions": {
+              "description": "Ignored for all children of ArticleLink.",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/componentLink"
+              }
             },
-            "components": {
-              "$ref": "#/definitions/componentsArray"
+            "aspectRatio": {
+              "type": "number",
+              "default": 1.0
             },
-            "scene": {
-              "$ref": "#/definitions/anyScene"
+            "explicitContent": {
+              "$ref": "#/definitions/explicitContent"
+            },
+            "fillMode": {
+              "$ref": "#/definitions/fillMode"
+            },
+            "horizontalAlignment": {
+              "$ref": "#/definitions/horizontalAlignment"
+            },
+            "URL": {
+              "description": "If omitted, the thumbnail of the article referenced in the ArticleLink component is used.",
+              "$ref": "#/definitions/URL"
+            },
+            "verticalAlignment": {
+              "$ref": "#/definitions/verticalAlignment"
             }
           }
         }
@@ -1637,7 +1954,7 @@
     "dividerComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
@@ -1651,10 +1968,25 @@
         }
       ]
     },
+    "flexibleSpacerComponent": {
+      "description": "The object is ignored when used outside of the HorizontalStackDisplay context.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractComponent"
+        },
+        {
+          "properties": {
+            "role": {
+              "const": "spacer"
+            }
+          }
+        }
+      ]
+    },
     "abstractVideoComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
@@ -1672,8 +2004,7 @@
               "type": "string"
             },
             "explicitContent": {
-              "type": "boolean",
-              "default": false
+              "$ref": "#/definitions/explicitContent"
             }
           },
           "required": [
@@ -1693,7 +2024,7 @@
               "const": "video"
             },
             "stillURL": {
-              "$ref": "#/definitions/URL"
+              "$ref": "#/definitions/imageURL"
             }
           }
         }
@@ -1803,7 +2134,7 @@
     "abstractMapComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "$ref": "#/definitions/hasCaptions"
@@ -1917,7 +2248,7 @@
     "htmlTableComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
@@ -1977,7 +2308,7 @@
     "dataTableComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
@@ -2015,7 +2346,7 @@
     "abstractImageComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "$ref": "#/definitions/hasCaptions"
@@ -2032,7 +2363,7 @@
               ]
             },
             "URL": {
-              "$ref": "#/definitions/URL"
+              "$ref": "#/definitions/imageURL"
             }
           },
           "required": [
@@ -2082,7 +2413,7 @@
     "galleryComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "properties": {
@@ -2111,7 +2442,7 @@
           "type": "object",
           "properties": {
             "URL": {
-              "$ref": "#/definitions/URL"
+              "$ref": "#/definitions/imageURL"
             },
             "explicitContent": {
               "$ref": "#/definitions/explicitContent"
@@ -2123,7 +2454,7 @@
         }
       ]
     },
-    "captionDescriptor": {
+    "baseCaptionDescriptor": {
       "type": "object",
       "properties": {
         "text": {
@@ -2153,15 +2484,24 @@
             }
           ]
         }
-      },
-      "required": [
-        "text"
+      }
+    },
+    "captionDescriptor": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/baseCaptionDescriptor"
+        },
+        {
+          "required": [
+            "text"
+          ]
+        }
       ]
     },
     "arKitComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "type": "object",
@@ -2199,7 +2539,7 @@
     "audioComponent": {
       "allOf": [
         {
-          "$ref": "#/definitions/animatableComponent"
+          "$ref": "#/definitions/abstractComponent"
         },
         {
           "$ref": "#/definitions/hasCaptions"
@@ -2219,7 +2559,7 @@
               "$ref": "#/definitions/explicitContent"
             },
             "imageURL": {
-              "$ref": "#/definitions/URL"
+              "$ref": "#/definitions/imageURL"
             }
           },
           "required": [
@@ -2227,17 +2567,6 @@
           ]
         }
       ]
-    },
-    "hasAnimations": {
-      "type": "object",
-      "properties": {
-        "animation": {
-          "$ref": "#/definitions/anyAnimation"
-        },
-        "behavior": {
-          "$ref": "#/definitions/anyBehavior"
-        }
-      }
     },
     "hasCaptions": {
       "type": "object",
@@ -2324,6 +2653,7 @@
       ]
     },
     "coverArt": {
+      "$comment": "Deprecated",
       "type": "object",
       "additionalProperties": false,
       "properties": {
@@ -2332,7 +2662,7 @@
           "const": "image"
         },
         "URL": {
-          "$ref": "#/definitions/URL"
+          "$ref": "#/definitions/imageURL"
         },
         "accessibilityCaption": {
           "type": "string"
@@ -2343,7 +2673,21 @@
         "URL"
       ]
     },
-    "contentDisplay": {
+    "horizontalStackDisplay": {
+      "description": "The object for displaying components side by side in a Container component.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "horizontal_stack"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "collectionDisplay": {
+      "description": "Defines how the collection of child components is presented.",
       "type": "object",
       "properties": {
         "type": {

@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "$id": "https://lonelyplanet.github.io/apple-news-format-schema/behavior.json",
+  "definitions": {
+    "abstractBehavior": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "backgroundMotionBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "background_motion"
+            }
+          }
+        }
+      ]
+    },
+    "backgroundParallaxBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "background_parallax"
+            }
+          }
+        }
+      ]
+    },
+    "motionBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "motion"
+            }
+          }
+        }
+      ]
+    },
+    "parallaxBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "parallax"
+            },
+            "factor": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 2.0
+            }
+          }
+        }
+      ]
+    },
+    "springyBehavior": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/abstractBehavior"
+        },
+        {
+          "properties": {
+            "type": {
+              "const": "springy"
+            }
+          }
+        }
+      ]
+    },
+    "anyBehavior": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/backgroundMotionBehavior"
+        },
+        {
+          "$ref": "#/definitions/backgroundParallaxBehavior"
+        },
+        {
+          "$ref": "#/definitions/motionBehavior"
+        },
+        {
+          "$ref": "#/definitions/parallaxBehavior"
+        },
+        {
+          "$ref": "#/definitions/springyBehavior"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "version": "1.9",
+  "identifier": "article-link",
+  "title": "article-link",
+  "language": "en",
+  "layout": {
+    "columns": 7,
+    "width": 1024,
+    "margin": 125,
+    "gutter": 40
+  },
+  "components": [
+    {
+      "role": "article_link",
+      "articleIdentifier": "https://apple.news/AT6kNQslCQy6EE4bF8hpOoQ",
+      "components": [
+        {
+          "role": "article_thumbnail",
+          "aspectRatio": 1,
+          "fillMode": "cover",
+          "verticalAlignment": "top"
+        },
+        {
+          "role": "article_title"
+        }
+      ]
+    }
+  ],
+  "componentTextStyles": {
+    "default": {}
+  }
+}
