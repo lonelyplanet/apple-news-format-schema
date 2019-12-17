@@ -5,10 +5,10 @@
   "subtitle": "Take your all-American cookie classic to the next level",
   "language": "en",
   "layout": {
-    "columns": 7,
+    "columns": 20,
     "width": 1024,
-    "margin": 70,
-    "gutter": 25
+    "margin": 60,
+    "gutter": 20
   },
   "metadata": {
     "datePublished": "2015-05-14T10:45:00+00:00",
@@ -19,7 +19,7 @@
     ],
     "generatorName": "Generator",
     "generatorVersion": "1.0",
-    "thumbnailURL": "bundle://header.jpg",
+    "thumbnailURL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg",
     "canonicalURL": "http://www.apple.com",
     "keywords": [
       "Cookies",
@@ -38,7 +38,7 @@
       "role": "section",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "scene": {
@@ -51,7 +51,7 @@
           "style": {
             "fill": {
               "type": "image",
-              "URL": "bundle://header.jpg",
+              "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/recipe01.jpg",
               "fillMode": "cover",
               "verticalAlignment": "bottom"
             }
@@ -63,7 +63,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "whiteContainer",
@@ -124,9 +124,9 @@
         },
         {
           "role": "body",
-          "text": " 1. Preheat oven to 350°F \n2. On a cutting board, coarsely chop the chocolate bars with a serrated knife into uneven chunks. Set aside.\n 3. Melt the butter in a medium stainless-steel saucepan on medium-low heat, continuing to cook as the butter bubbles and browns, whisking frequently. Once you begin smelling a nutty aroma and see tiny browned bits, immediately remove from the heat (the butter will burn if you wait too long) and pour into a small bowl; set aside to cool.\n 4. Mix the flour, salt, baking soda, and cinnamon; whisk vigorously to combine.\n 5. Pour the browned butter and both sugars into the bowl of your stand mixer and use the blade attachment to beat until smooth, pausing to scrape down the bowl occasionally. (This can also be done by hand or with an electric hand mixer.) Add the eggs, one at a time, beating well after each addition. Lastly, add the vanilla extract and beat for 3 more minutes, or until light and fluffy.\n 6. Add the flour mixture into the butter-sugar mixture one third at a time, stirring well to blend after each addition. Fold in the chocolate chunks.\n 7. Spoon rounded tablespoons of the dough onto parchment-lined baking sheets, leaving at least two inches between each cookie. \n 8. Bake in the preheated oven at 350°F for 10-12 minutes, at which time the edges should be lightly browned. (Halfway through the cooking time, rotate the baking sheets 180 degrees to promote even browning.) Allow to cool for 5 minutes on the baking sheets and then transfer to a wire rack to cool completely. ",
+          "format": "html",
+          "text": "<ol><li>Preheat oven to 350°F</li><li>On a cutting board, coarsely chop the chocolate bars with a serrated knife into uneven chunks. Set aside.</li><li>Melt the butter in a medium stainless-steel saucepan on medium-low heat, continuing to cook as the butter bubbles and browns, whisking frequently. Once you begin smelling a nutty aroma and see tiny browned bits, immediately remove from the heat (the butter will burn if you wait too long) and pour into a small bowl; set aside to cool.</li><li>Mix the flour, salt, baking soda, and cinnamon; whisk vigorously to combine.</li><li>Pour the browned butter and both sugars into the bowl of your stand mixer and use the blade attachment to beat until smooth, pausing to scrape down the bowl occasionally. (This can also be done by hand or with an electric hand mixer.) Add the eggs, one at a time, beating well after each addition. Lastly, add the vanilla extract and beat for 3 more minutes, or until light and fluffy.</li><li>Add the flour mixture into the butter-sugar mixture one third at a time, stirring well to blend after each addition. Fold in the chocolate chunks.</li><li>Spoon rounded tablespoons of the dough onto parchment-lined baking sheets, leaving at least two inches between each cookie.</li><li>Bake in the preheated oven at 350°F for 10-12 minutes, at which time the edges should be lightly browned. (Halfway through the cooking time, rotate the baking sheets 180 degrees to promote even browning.) Allow to cool for 5 minutes on the baking sheets and then transfer to a wire rack to cool completely.</li></ol>",
           "layout": "column2BodyLayout",
-          "format": "markdown",
           "textStyle": "body"
         }
       ]
@@ -137,7 +137,7 @@
       "style": {
         "fill": {
           "type": "image",
-          "URL": "bundle://bodyImage1.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/recipe02.jpg",
           "fillMode": "cover",
           "verticalAlignment": "bottom"
         }
@@ -147,7 +147,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "sidebarContainer",
@@ -259,13 +259,13 @@
   "componentLayouts": {
     "imageWideLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "50vh"
     },
     "photoLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "87vh",
       "margin": {
@@ -274,7 +274,7 @@
     },
     "captionLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 10,
         "bottom": 30
@@ -282,7 +282,7 @@
     },
     "titleLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 10,
         "bottom": 10
@@ -290,36 +290,36 @@
     },
     "introLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "bottom": 10
       }
     },
     "column1Layout": {
       "columnStart": 0,
-      "columnSpan": 3
+      "columnSpan": 8
     },
     "column1BodyLayout": {
       "columnStart": 0,
-      "columnSpan": 3,
+      "columnSpan": 8,
       "margin": {
         "bottom": 25
       }
     },
     "column2Layout": {
-      "columnStart": 3,
-      "columnSpan": 4
+      "columnStart": 9,
+      "columnSpan": 11
     },
     "column2BodyLayout": {
-      "columnStart": 3,
-      "columnSpan": 4,
+      "columnStart": 9,
+      "columnSpan": 11,
       "margin": {
         "bottom": 25
       }
     },
     "sidebarLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 20
       }

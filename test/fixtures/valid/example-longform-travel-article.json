@@ -4,10 +4,10 @@
   "title": "Example Longform Travel Article",
   "language": "en",
   "layout": {
-    "columns": 7,
+    "columns": 20,
     "width": 1024,
-    "margin": 125,
-    "gutter": 40
+    "margin": 60,
+    "gutter": 20
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
@@ -18,7 +18,7 @@
       "Urna Semper",
       "Ryan Lynch"
     ],
-    "thumbnailURL": "bundle://header.jpg",
+    "thumbnailURL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg",
     "canonicalURL": "http://www.apple.com",
     "keywords": [
       "Iceland",
@@ -39,7 +39,7 @@
       "style": {
         "fill": {
           "type": "image",
-          "URL": "bundle://header.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg",
           "fillMode": "cover",
           "verticalAlignment": "bottom"
         }
@@ -62,7 +62,7 @@
               "role": "divider",
               "layout": {
                 "columnStart": 0,
-                "columnSpan": 7,
+                "columnSpan": 20,
                 "margin": {
                   "bottom": 15
                 }
@@ -82,7 +82,7 @@
               "role": "divider",
               "layout": {
                 "columnStart": 0,
-                "columnSpan": 7,
+                "columnSpan": 20,
                 "margin": {
                   "top": 15,
                   "bottom": 15
@@ -103,7 +103,7 @@
               "role": "author",
               "layout": {
                 "columnStart": 0,
-                "columnSpan": 7,
+                "columnSpan": 20,
                 "margin": {
                   "top": 10,
                   "bottom": 5
@@ -116,7 +116,7 @@
               "role": "photographer",
               "layout": {
                 "columnStart": 0,
-                "columnSpan": 7,
+                "columnSpan": 20,
                 "margin": {
                   "bottom": 15
                 }
@@ -130,18 +130,10 @@
     },
     {
       "role": "body",
-      "text": "ALTHOUGH IT IS RICH in beauty and history, Iceland is best known for two things: the quirky singer Björk and Eyjafjallajökull, the sub-glacial volcano that erupted in 2010, causing hundreds of ash-related flight cancellations and jokes about its comically unpronounceable name. In recent years, the scarcely populated mid-Atlantic island has also become known to Game of Thrones superfans as the haunting place where scenes “beyond the Wall” are filmed.\n\nBut incomprehensible monikers and occasional international headlines aside, Iceland is a truly fascinating, wild, and otherworldly destination worth at least a week of exploration, easily accomplished as an extended layover when flying between the U.S. and Europe. Situated on the unsteady divide between the slowly drifting American and Eurasian tectonic plates, the former Viking stronghold has become a cosmopolitan country with a stylish capital city, Reykjavík, featuring friendly, English-speaking locals and an abundance of culture and dining. Still, there’s a penetrating feeling that nature will always prevail.\n\nAt some point, most people pick up the adage that Iceland is green, while neighboring Greenland is icy. However, Iceland is rather chilly much of the time. Temperatures average between 36 and 57 degrees Fahrenheit, and the weather is known to change in a split second, making quick-drying layers imperative. Additionally, there are only four to five hours of daylight during winter, while in the summer the sun sets for just a couple of hours per night.\n\nAs for its reputation as the land of fire and ice, that’s thanks to 30 active volcanoes (on an island about the size of Kentucky) alongside plenty of glaciers and icebergs. There are also tens of thousands of tiny horses: one petite, wild-maned Icelandic steed for every four people, to be exact.",
+      "format": "html",
+      "text": "<p>A<span data-anf-textstyle=\"bodySpanColorStyle\">LTHOUGH IT IS RICH</span> in beauty and history, Iceland is best known for two things: the quirky singer Björk and Eyjafjallajökull, the sub-glacial volcano that erupted in 2010, causing hundreds of ash-related flight cancellations and jokes about its comically unpronounceable name. In recent years, the scarcely populated mid-Atlantic island has also become known to Game of Thrones superfans as the haunting place where scenes “beyond the Wall” are filmed.</p><p>But incomprehensible monikers and occasional international headlines aside, Iceland is a truly fascinating, wild, and otherworldly destination worth at least a week of exploration, easily accomplished as an extended layover when flying between the U.S. and Europe. Situated on the unsteady divide between the slowly drifting American and Eurasian tectonic plates, the former Viking stronghold has become a cosmopolitan country with a stylish capital city, Reykjavík, featuring friendly, English-speaking locals and an abundance of culture and dining. Still, there’s a penetrating feeling that nature will always prevail.</p><p>At some point, most people pick up the adage that Iceland is green, while neighboring Greenland is icy. However, Iceland is rather chilly much of the time. Temperatures average between 36 and 57 degrees Fahrenheit, and the weather is known to change in a split second, making quick-drying layers imperative. Additionally, there are only four to five hours of daylight during winter, while in the summer the sun sets for just a couple of hours per night.</p><p>As for its reputation as the land of fire and ice, that’s thanks to 30 active volcanoes (on an island about the size of Kentucky) alongside plenty of glaciers and icebergs. There are also tens of thousands of tiny horses: one petite, wild-maned Icelandic steed for every four people, to be exact.</p>",
       "layout": "bodyLayout",
       "textStyle": "dropcapBodyStyle",
-      "inlineTextStyles": [
-        {
-          "rangeStart": 1,
-          "rangeLength": 19,
-          "textStyle": {
-            "textColor": "#222e33"
-          }
-        }
-      ],
       "animation": {
         "type": "fade_in",
         "userControllable": true,
@@ -162,7 +154,7 @@
           "style": {
             "fill": {
               "type": "image",
-              "URL": "bundle://bodyImage1.jpg",
+              "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland04.jpg",
               "fillMode": "cover",
               "verticalAlignment": "top"
             }
@@ -178,7 +170,7 @@
               "text": "FOR WATER OF THE FROZEN VARIETY IT’S WORTH THE LONG—AND EXCEEDINGLY PHOTOGENIC—DRIVE TO JÖKULSÁRLÓN.",
               "layout": {
                 "columnStart": 0,
-                "columnSpan": 7,
+                "columnSpan": 20,
                 "margin": {
                   "top": 70
                 }
@@ -203,15 +195,15 @@
       "role": "mosaic",
       "items": [
         {
-          "URL": "bundle://mosaicImage1.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland05.jpg",
           "caption": "Melting ice feeds the local waterways."
         },
         {
-          "URL": "bundle://mosaicImage2.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland06.jpg",
           "caption": "The largest Puffin colony on earth is on Iceland’s Westmann Isles."
         },
         {
-          "URL": "bundle://mosaicImage3.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland07.jpg",
           "caption": "Moving glaciers have cut many fjords into Iceland’s coastline."
         }
       ],
@@ -250,6 +242,7 @@
       "layout": "bodyLayout",
       "textStyle": "bodyStyle"
     },
+
     {
       "role": "banner_advertisement",
       "bannerType": "standard"
@@ -264,15 +257,15 @@
       "role": "gallery",
       "items": [
         {
-          "URL": "bundle://galleryImage1.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland02.jpg",
           "caption": "Iceland is the world’s youngest country, geologically speaking."
         },
         {
-          "URL": "bundle://galleryImage2.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland03.jpg",
           "caption": "Volcanic activity creates interesting thermal pools."
         },
         {
-          "URL": "bundle://galleryImage3.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland08.jpg",
           "caption": "Iceland is famous for its sturdy equines."
         }
       ],
@@ -323,9 +316,9 @@
         },
         {
           "role": "body",
-          "text": " - The Northern Lights—on crisp, clear winter nights, visitors get a spectacular once-in-a-lifetime display.\n - The Blue Lagoon, or another milky blue geothermal hot springs, of which there are many.\n - Vatnajökull National Park is the place to see fire and ice together, as hot streams move alongside a vast ice cap.\n - Whale-watching via boat in the summertime means orcas, humpbacks, minke whales and giant blue whales.\n - Geysir, the first geyser known to man, has been active for some 10,000 years.",
+          "format": "html",
+          "text": "<ul><li>The Northern Lights—on crisp, clear winter nights, visitors get a spectacular once-in-a-lifetime display.</li><li>The Blue Lagoon, or another milky blue geothermal hot springs, of which there are many.</li><li>Vatnajökull National Park is the place to see fire and ice together, as hot streams move alongside a vast ice cap.</li><li>Whale-watching via boat in the summertime means orcas, humpbacks, minke whales and giant blue whales.</li><li>Geysir, the first geyser known to man, has been active for some 10,000 years.</li></ul>",
           "layout": "sidebarTextLayout",
-          "format": "markdown",
           "textStyle": "sidebarTextStyle"
         }
       ]
@@ -338,8 +331,8 @@
     },
     {
       "role": "body",
-      "text": "For more on this story visit the [Iceland Tourism Site.](http://www.visiticeland.com)",
-      "format": "markdown",
+      "format": "html",
+      "text": "For more on this story visit the <a href=\"http://www.visiticeland.com\">Iceland Tourism Site.</a>",
       "textStyle": "bodyItalicStyle"
     },
     {
@@ -378,6 +371,11 @@
     },
     "sidebarContainerStyle": {
       "backgroundColor": "#87ADBF"
+    }
+  },
+  "textStyles": {
+    "bodySpanColorStyle": {
+      "textColor": "#222e33"
     }
   },
   "componentTextStyles": {
@@ -488,17 +486,17 @@
   "componentLayouts": {
     "titleContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7
+      "columnSpan": 20
     },
     "headerImageContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "42vh"
     },
     "bodyImageContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "75vw",
       "margin": {
@@ -508,7 +506,7 @@
     },
     "headerGradientContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "80vh",
       "margin": {
@@ -517,7 +515,7 @@
     },
     "sidebarContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "contentInset": true,
       "margin": {
         "top": 25,
@@ -526,7 +524,7 @@
     },
     "galleryLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 25,
         "bottom": 25
@@ -534,11 +532,11 @@
     },
     "titleLayout": {
       "columnStart": 0,
-      "columnSpan": 7
+      "columnSpan": 20
     },
     "introLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 10,
         "bottom": 5
@@ -546,7 +544,7 @@
     },
     "bodyLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -554,7 +552,7 @@
     },
     "pullquoteLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 25,
         "bottom": 5
@@ -562,11 +560,11 @@
     },
     "sidebarTextLayout": {
       "columnStart": 0,
-      "columnSpan": 7
+      "columnSpan": 20
     },
     "pullquoteWrapLayout": {
       "columnStart": 0,
-      "columnSpan": 3,
+      "columnSpan": 6,
       "margin": {
         "top": 25,
         "bottom": 25
@@ -574,7 +572,7 @@
     },
     "tweetLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 25,
         "bottom": 25
@@ -582,7 +580,7 @@
     },
     "pullquoteAttributeLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 5,
         "bottom": 25

@@ -5,13 +5,13 @@
   "subtitle": "Example Graphic Story Article Subtitle",
   "language": "en",
   "layout": {
-    "columns": 7,
+    "columns": 20,
     "width": 1024,
-    "margin": 70,
-    "gutter": 40
+    "margin": 60,
+    "gutter": 20
   },
   "metadata": {
-    "thumbnailURL": "bundle://header.jpg",
+    "thumbnailURL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/desert01.jpg",
     "excerpt": "It would be easy to pass off California’s epic drought as an issue for the Golden State alone."
   },
   "documentStyle": {
@@ -22,7 +22,7 @@
       "role": "section",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "components": [
@@ -32,7 +32,7 @@
           "style": {
             "fill": {
               "type": "image",
-              "URL": "bundle://header.jpg",
+              "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/desert01.jpg",
               "fillMode": "cover",
               "horizontalAlignment": "left"
             }
@@ -69,7 +69,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "whiteContainerStyle",
@@ -79,7 +79,7 @@
           "text": "by MICHAEL BURNS | October 25, 2015 | 11:15 AM",
           "layout": {
             "columnStart": 0,
-            "columnSpan": 7,
+            "columnSpan": 20,
             "margin": {
               "top": 20,
               "bottom": 10
@@ -92,7 +92,7 @@
           "text": "Illustrations by LOREM IPSUM",
           "layout": {
             "columnStart": 0,
-            "columnSpan": 7,
+            "columnSpan": 20,
             "margin": {
               "bottom": 15
             }
@@ -103,7 +103,7 @@
           "role": "divider",
           "layout": {
             "columnStart": 0,
-            "columnSpan": 7,
+            "columnSpan": 20,
             "margin": {
               "bottom": 5
             }
@@ -115,24 +115,16 @@
         },
         {
           "role": "body",
-          "text": "It would be easy to pass off California’s epic drought as an issue for the Golden State alone. But to do so is to ignore the region’s agricultural significance to the rest of the nation—California provides more than one-third of our country's vegetables and two-thirds of its fruits and nuts. With fruit and vegetable prices up between 2.5% and 3.5% (1), the drought may continue to wreak economic havoc in the months to come. ",
+          "format": "html",
+          "text": "<p>It would be easy to pass off California’s epic drought as an issue for the Golden State alone. But to do so is to ignore the region’s agricultural significance to the rest of the nation—California provides more than one-third of our country's vegetables and two-thirds of its fruits and nuts. With fruit and vegetable prices up between 2.5% and 3.5% <sup>(1)</sup>, the drought may continue to wreak economic havoc in the months to come.</p>",
           "layout": "introLayout",
-          "textStyle": "dropcapBodyStyle",
-          "inlineTextStyles": [
-            {
-              "rangeStart": 350,
-              "rangeLength": 3,
-              "textStyle": {
-                "verticalAlignment": "superscript"
-              }
-            }
-          ]
+          "textStyle": "dropcapBodyStyle"
         },
         {
           "role": "divider",
           "layout": {
             "columnStart": 0,
-            "columnSpan": 7,
+            "columnSpan": 20,
             "margin": {
               "top": 5,
               "bottom": 20
@@ -149,7 +141,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "grayContainerStyle",
@@ -162,7 +154,7 @@
         },
         {
           "role": "figure",
-          "URL": "bundle://bodyGraphic1.png",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/drought01.png",
           "layout": "bodyImageLayout",
           "anchor": {
             "targetAnchorPosition": "top",
@@ -188,7 +180,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "whiteContainerStyle",
@@ -201,7 +193,7 @@
         },
         {
           "role": "figure",
-          "URL": "bundle://bodyGraphic2.png",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/drought02.png",
           "layout": "bodyImageLayout",
           "anchor": {
             "targetAnchorPosition": "top",
@@ -217,18 +209,10 @@
         {
           "identifier": "body2",
           "role": "body",
-          "text": "While droughts have been a part of the California landscape for more than four centuries—tree-ring records show that the state experienced a severe water shortage in 1580 (2)—the destruction incurred by the current drought is worsened severely by the extreme heat. High temperatures have depleted the state’s reservoirs and melted the mountain snowpack that is crucial to keeping lakes and farmlands wet in the summer months.\n",
+          "format": "html",
+          "text": "<p>While droughts have been a part of the California landscape for more than four centuries—tree-ring records show that the state experienced a severe water shortage in 1580 <sup>(2)</sup>—the destruction incurred by the current drought is worsened severely by the extreme heat. High temperatures have depleted the state’s reservoirs and melted the mountain snowpack that is crucial to keeping lakes and farmlands wet in the summer months.</p>",
           "layout": "bodyLayout",
-          "textStyle": "bodyStyle",
-          "inlineTextStyles": [
-            {
-              "rangeStart": 171,
-              "rangeLength": 3,
-              "textStyle": {
-                "verticalAlignment": "superscript"
-              }
-            }
-          ]
+          "textStyle": "bodyStyle"
         }
       ]
     },
@@ -236,7 +220,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "grayContainerStyle",
@@ -249,7 +233,7 @@
         },
         {
           "role": "figure",
-          "URL": "bundle://bodyGraphic3.png",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/drought03.png",
           "layout": "bodyImageLayout",
           "anchor": {
             "targetAnchorPosition": "top",
@@ -265,18 +249,10 @@
         {
           "identifier": "body3",
           "role": "body",
-          "text": "On average, California uses 196 gallons of water per capita each day, though that number varies, often wildly, according to region. Palm Springs soaks up 736 gallons a day because of dry, hot conditions, which necessitate greater need for watered lawns and filled pools. That’s five times as much as city of Los Angeles, which uses just 152 gallons per day. The state's highest can be attributed to the tiny industrial city of Vernon, which has just 112 residents but houses 18,000 businesses. That dichotomy accounts for 94,111 gallons per capita every single day. (3) \n",
+          "format": "html",
+          "text": "<p>On average, California uses 196 gallons of water per capita each day, though that number varies, often wildly, according to region. Palm Springs soaks up 736 gallons a day because of dry, hot conditions, which necessitate greater need for watered lawns and filled pools. That’s five times as much as city of Los Angeles, which uses just 152 gallons per day. The state's highest can be attributed to the tiny industrial city of Vernon, which has just 112 residents but houses 18,000 businesses. That dichotomy accounts for 94,111 gallons per capita every single day. <sup>(3)</sup></p>",
           "layout": "bodyLayout",
-          "textStyle": "bodyStyle",
-          "inlineTextStyles": [
-            {
-              "rangeStart": 566,
-              "rangeLength": 3,
-              "textStyle": {
-                "verticalAlignment": "superscript"
-              }
-            }
-          ]
+          "textStyle": "bodyStyle"
         }
       ]
     },
@@ -284,7 +260,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "whiteContainerStyle",
@@ -297,7 +273,7 @@
         },
         {
           "role": "figure",
-          "URL": "bundle://bodyGraphic4.png",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/drought04.png",
           "layout": "bodyImageLayout",
           "anchor": {
             "targetAnchorPosition": "top",
@@ -313,18 +289,10 @@
         {
           "identifier": "body4",
           "role": "body",
-          "text": "While California’s 9 million acres of farmland use a vast amount of the state's water, with some research indicating as much as 80%, that figure is based on water allocated for human use only, and doesn’t take into account environmental use, like protected wild rivers, recreational purposes, and keeping ocean water out of the San Joaquin River Delta, which is where the state gets most of its drinkable water. Taking that data into consideration, water use can be attributed as approximately 40 to 60% for agriculture, 10 to 16% for urban use, and other purposes—including environmental—at about 22%. (4)\n",
+          "format": "html",
+          "text": "<p>While California’s 9 million acres of farmland use a vast amount of the state's water, with some research indicating as much as 80%, that figure is based on water allocated for human use only, and doesn’t take into account environmental use, like protected wild rivers, recreational purposes, and keeping ocean water out of the San Joaquin River Delta, which is where the state gets most of its drinkable water. Taking that data into consideration, water use can be attributed as approximately 40 to 60% for agriculture, 10 to 16% for urban use, and other purposes—including environmental—at about 22%. <sup>(4)</sup></p>",
           "layout": "bodyLayout",
-          "textStyle": "bodyStyle",
-          "inlineTextStyles": [
-            {
-              "rangeStart": 603,
-              "rangeLength": 3,
-              "textStyle": {
-                "verticalAlignment": "superscript"
-              }
-            }
-          ]
+          "textStyle": "bodyStyle"
         }
       ]
     },
@@ -332,7 +300,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "grayContainerStyle",
@@ -345,7 +313,7 @@
         },
         {
           "role": "figure",
-          "URL": "bundle://bodyGraphic5.png",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/drought05.png",
           "layout": "bodyImageLayout",
           "anchor": {
             "targetAnchorPosition": "top",
@@ -371,7 +339,7 @@
       "role": "container",
       "layout": {
         "columnStart": 0,
-        "columnSpan": 7,
+        "columnSpan": 20,
         "ignoreDocumentMargin": true
       },
       "style": "whiteContainerStyle",
@@ -384,9 +352,9 @@
         },
         {
           "role": "body",
-          "text": "1. Michael Martinez and Alexandra Meeks (April 3, 2015) [How historic California drought affects rest of nation, often for the worse](http://www.cnn.com/2015/04/03/us/california-drought/) \n2. Bettina Boxall (February 23, 2014) [Severe drought? California has been here before](http://articles.latimes.com/2014/feb/23/local/la-me-drought-weakness-20140223) \n3. Paul Rogers and Nicholas St. Fleur (February 7, 2014) [California Drought: Database shows big difference between water guzzlers and sippers](http://www.mercurynews.com/science/ci_25090363/california-drought-water-use-varies-widely-around-state) \n4. Molly Peterson (April 15, 2015) [Drought: 10 things to know about California water use](http://www.scpr.org/news/2015/04/15/50941/10-things-to-know-about-california-water-use/) \n",
+          "format": "html",
+          "text": "<ol><li>Michael Martinez and Alexandra Meeks (April 3, 2015) <a href=\"http://www.cnn.com/2015/04/03/us/california-drought/\">How historic California drought affects rest of nation, often for the worse</a></li><li>Bettina Boxall (February 23, 2014) <a href=\"http://articles.latimes.com/2014/feb/23/local/la-me-drought-weakness-20140223\">Severe drought? California has been here before</a></li><li>Paul Rogers and Nicholas St. Fleur (February 7, 2014) <a href=\"http://www.mercurynews.com/science/ci_25090363/california-drought-water-use-varies-widely-around-state\">California Drought: Database shows big difference between water guzzlers and sippers</a></li><li>Molly Peterson (April 15, 2015) <a href=\"http://www.scpr.org/news/2015/04/15/50941/10-things-to-know-about-california-water-use/\">Drought: 10 things to know about California water use</a></li></ol>",
           "layout": "introLayout",
-          "format": "markdown",
           "textStyle": "sourcesStyle"
         }
       ]
@@ -480,13 +448,13 @@
   "componentLayouts": {
     "headerContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "75vh"
     },
     "bodyImageLayout": {
-      "columnStart": 4,
-      "columnSpan": 3,
+      "columnStart": 11,
+      "columnSpan": 9,
       "ignoreDocumentMargin": true,
       "minimumHeight": "20vh",
       "margin": {
@@ -496,14 +464,14 @@
     },
     "titleLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": "20vh"
       }
     },
     "introLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -511,7 +479,7 @@
     },
     "heading1Layout": {
       "columnStart": 0,
-      "columnSpan": 4,
+      "columnSpan": 11,
       "margin": {
         "top": 25,
         "bottom": 0
@@ -519,7 +487,7 @@
     },
     "bodyLayout": {
       "columnStart": 0,
-      "columnSpan": 4,
+      "columnSpan": 11,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -527,12 +495,12 @@
     },
     "captionContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true
     },
     "captionLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 10,
         "bottom": 10

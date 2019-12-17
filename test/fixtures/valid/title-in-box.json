@@ -4,15 +4,15 @@
   "title": "Title in Box",
   "language": "en",
   "layout": {
-    "columns": 7,
+    "columns": 20,
     "width": 1024,
-    "margin": 70,
-    "gutter": 40
+    "margin": 60,
+    "gutter": 20
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
     "excerpt": "Title in Box",
-    "thumbnailURL": "bundle://header.jpg"
+    "thumbnailURL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg"
   },
   "documentStyle": {
     "backgroundColor": "#f6f6f6"
@@ -24,7 +24,7 @@
       "style": {
         "fill": {
           "type": "image",
-          "URL": "bundle://header.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg",
           "fillMode": "cover",
           "verticalAlignment": "bottom"
         }
@@ -183,20 +183,21 @@
   "componentLayouts": {
     "headerImageLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "100vh"
     },
     "bodyContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true
     },
     "tabLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "minimumHeight": "2vh",
       "ignoreDocumentMargin": false,
+
       "contentInset": {
         "right": true,
         "left": true
@@ -208,7 +209,7 @@
     },
     "titleLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 30,
         "bottom": 5
@@ -216,7 +217,7 @@
     },
     "introLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 30
@@ -224,7 +225,7 @@
     },
     "authorLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -232,7 +233,7 @@
     },
     "bodyLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -248,14 +249,14 @@
     },
     "heading1Layout": {
       "columnStart": 0,
-      "columnSpan": 5,
+      "columnSpan": 20,
       "margin": {
         "top": 15
       }
     },
     "pullquoteLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15

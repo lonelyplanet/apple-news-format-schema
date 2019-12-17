@@ -4,15 +4,15 @@
   "title": "Image as Tab",
   "language": "en",
   "layout": {
-    "columns": 7,
+    "columns": 20,
     "width": 1024,
-    "margin": 70,
-    "gutter": 40
+    "margin": 60,
+    "gutter": 20
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
     "excerpt": "Image as Tab",
-    "thumbnailURL": "bundle://header.jpg"
+    "thumbnailURL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg"
   },
   "documentStyle": {
     "backgroundColor": "#f6f6f6"
@@ -24,7 +24,7 @@
       "style": {
         "fill": {
           "type": "image",
-          "URL": "bundle://header.jpg",
+          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg",
           "fillMode": "cover",
           "verticalAlignment": "center"
         }
@@ -40,7 +40,7 @@
           "style": {
             "fill": {
               "type": "image",
-              "URL": "bundle://tab.png",
+              "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/tab01.png",
               "fillMode": "fit",
               "verticalAlignment": "bottom"
             }
@@ -174,13 +174,13 @@
   "componentLayouts": {
     "headerImageLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "42vh"
     },
     "bodyContainerLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "contentInset": {
         "left": true,
@@ -189,13 +189,13 @@
     },
     "tabLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "ignoreDocumentMargin": true,
       "minimumHeight": "13vw"
     },
     "titleLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 10
@@ -203,7 +203,7 @@
     },
     "introLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -211,7 +211,7 @@
     },
     "authorLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -219,7 +219,7 @@
     },
     "bodyLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15
@@ -227,14 +227,14 @@
     },
     "heading1Layout": {
       "columnStart": 0,
-      "columnSpan": 5,
+      "columnSpan": 20,
       "margin": {
         "top": 15
       }
     },
     "pullquoteLayout": {
       "columnStart": 0,
-      "columnSpan": 7,
+      "columnSpan": 20,
       "margin": {
         "top": 15,
         "bottom": 15

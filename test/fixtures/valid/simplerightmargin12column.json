@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "identifier": "Apple_Demo",
-  "title": "Simple with Headline above Header Image",
+  "title": "Simple Right Margin 12 Column",
   "language": "en",
   "layout": {
     "columns": 20,
@@ -11,7 +11,7 @@
   },
   "subtitle": "Non occidere quae cumque vi ventia",
   "metadata": {
-    "excerpt": "Simple with Headline above Header Image",
+    "excerpt": "Simple Right Margin 12 Column",
     "thumbnailURL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg"
   },
   "documentStyle": {
@@ -21,26 +21,8 @@
     {
       "role": "title",
       "layout": "titleLayout",
-      "text": "Headline Above Image",
+      "text": "Right Margin / 12 col",
       "textStyle": "titleStyle"
-    },
-    {
-      "role": "intro",
-      "layout": "introLayout",
-      "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto.",
-      "textStyle": "introStyle"
-    },
-    {
-      "role": "header",
-      "layout": "headerImageLayout",
-      "style": {
-        "fill": {
-          "type": "image",
-          "URL": "https://developer.apple.com/news-publisher/download/Apple-News-Example-Articles/images/Iceland01.jpg",
-          "fillMode": "cover",
-          "verticalAlignment": "center"
-        }
-      }
     },
     {
       "role": "author",
@@ -77,12 +59,6 @@
       "lineHeight": 74,
       "textColor": "#000"
     },
-    "introStyle": {
-      "textAlignment": "left",
-      "fontName": "HelveticaNeue-Medium",
-      "fontSize": 24,
-      "textColor": "#000"
-    },
     "authorStyle": {
       "textAlignment": "left",
       "fontName": "HelveticaNeue-Bold",
@@ -98,30 +74,12 @@
     }
   },
   "componentLayouts": {
-    "headerImageLayout": {
-      "columnStart": 0,
-      "columnSpan": 20,
-      "ignoreDocumentMargin": true,
-      "minimumHeight": "40vh",
-      "margin": {
-        "top": 15,
-        "bottom": 15
-      }
-    },
     "titleLayout": {
       "columnStart": 0,
       "columnSpan": 20,
       "margin": {
         "top": 50,
         "bottom": 10
-      }
-    },
-    "introLayout": {
-      "columnStart": 0,
-      "columnSpan": 20,
-      "margin": {
-        "top": 15,
-        "bottom": 15
       }
     },
     "authorLayout": {
@@ -134,7 +92,7 @@
     },
     "bodyLayout": {
       "columnStart": 0,
-      "columnSpan": 18,
+      "columnSpan": 12,
       "margin": {
         "top": 15,
         "bottom": 15
