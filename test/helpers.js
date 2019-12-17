@@ -19,21 +19,23 @@ function ensureTmpDirExists()
 
 function loadSchema( uri )
 {
-  return new Promise( async (resolve, reject) => {
+  return new Promise( (resolve, reject) => {
     try {
-      const dir = await ensureTmpDirExists();
-      const hashedPath = path.join( dir, md5( uri ) );
-      const localSchemaExists = await fs.pathExists( hashedPath );
+      ensureTmpDirExists().then( dir => {
+        const hashedPath = path.join( dir, md5( uri ) );
 
-      if ( localSchemaExists ) {
-        fs.readFile( hashedPath, (err, content) => err ? reject( err ) : resolve( content ) );
-      } else {
-        request( uri ).pipe( fs.createWriteStream( hashedPath ) ).on('finish', () => {
-          fs.readFile( hashedPath, (err, content) => err ? reject( err ) : resolve( content ) );
+        fs.pathExists( hashedPath ).then( exists => {
+          if ( exists ) {
+            fs.readFile( hashedPath, (err, content) => err ? reject( err ) : resolve( content ) );
+          } else {
+            request( uri ).pipe( fs.createWriteStream( hashedPath ) ).on('finish', () => {
+              fs.readFile( hashedPath, (err, content) => err ? reject( err ) : resolve( content ) );
+            });
+          }
         });
-      }
-    } catch ( error ) {
-      reject( error );
+      });
+    } catch ( err ) {
+      reject( err );
     }
   });
 }
